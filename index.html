@@ -789,21 +789,20 @@
                                 <div class="form-group">
                                     <span>Live cint link:</span>
                                     <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control" readonly v-bind:value="liveLink">
+                                        <input id="liveLink" type="text" class="form-control" readonly v-bind:value="liveLink">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary"><a>Go</a></button>
-                                            <button class="btn btn-outline-secondary"><i
-                                                    class="fa fa-copy"></i></button>
+                                            <a class="btn btn-outline-secondary" :href="liveLink" target="_blank">Go</a>
+                                            <button class="btn btn-outline-secondary clipboard" data-clipboard-target="#liveLink" type="button"><i class="fa fa-copy"></i></button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <span>WeChat link:</span>
                                     <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control" readonly v-bind:value="wechatLink">
+                                        <input id="wechatLink" type="text" class="form-control" readonly v-bind:value="wechatLink">
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary"><a>Go</a></button>
-                                            <button class="btn btn-outline-secondary"><i
+                                            <a class="btn btn-outline-secondary" :href="wechatLink" target="_blank">Go</a>
+                                            <button class="btn btn-outline-secondary clipboard" data-clipboard-target="#wechatLink" type="button"><i
                                                     class="fa fa-copy"></i></button>
                                         </div>
                                     </div>
