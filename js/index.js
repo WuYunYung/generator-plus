@@ -37,7 +37,7 @@ var app = new Vue({
       "AR",
       "HI",
     ],
-    countryCodeS: [
+    countryCode: [
       "ARG",
       "AUS",
       "AUT",
