@@ -3,24 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generator | Links</title>
     <script src="https://cdn.bootcss.com/clipboard.js/2.0.6/clipboard.min.js"></script>
-    <link
-        rel="stylesheet"
-        href="./css/bootstrap.min.css"
-    >
-    <link
-        rel="stylesheet"
-        href="./css/style.css"
-    >
-    <link
-        rel="stylesheet"
-        href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css"
-    >
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
 </head>
 
 <body class="d-flex flex-column">
@@ -33,30 +21,18 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <div class="navbar-nav mr-auto">
-                        <a
-                            class="nav-item nav-link active"
-                            href="#"
-                        >Links</a>
-                        <a
-                            class="nav-item nav-link"
-                            href="./command.html"
-                        >Commands</a>
+                        <a class="nav-item nav-link active" href="#">Links</a>
+                        <a class="nav-item nav-link" href="./command.html">Commands</a>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
-    <main
-        role="main"
-        id="app"
-        >
+    <main role="main" id="app">
         <div class="container">
 
             <div class="row">
-                <div
-                    class="col col-xl-4 col-lg-4 col-md-5"
-                    style="margin-top: 2em;height: fit-content;"
-                    >
+                <div class="col col-xl-4 col-lg-4 col-md-5" style="margin-top: 2em;height: fit-content;">
                     <div class="card shadow">
 
                         <div class="card-body">
@@ -65,17 +41,10 @@
                             <div class="form-group">
                                 <label>SN:</label>
                                 <div class="input-group input-group-sm">
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        v-model="sn"
-                                        :class="{'is-valid':sn.length==6}"
-                                    >
+                                    <input type="text" class="form-control" v-model="sn"
+                                        :class="{'is-valid':sn.length==6}">
                                     <div class="input-group-append">
-                                        <button
-                                            class="btn btn-outline-secondary"
-                                            type="button"
-                                        >
+                                        <button class="btn btn-outline-secondary" type="button">
                                             <i class="fa fa-paste"></i>
                                         </button>
                                     </div>
@@ -87,1109 +56,42 @@
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">apac</span>
-                                        <span
-                                            class="input-group-text"
-                                            v-if="sn.length===6"
-                                        >C{{sn}}</span>
+                                        <span class="input-group-text" v-if="sn.length===6">C{{sn}}</span>
                                     </div>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        v-model="sp"
-                                    >
+                                    <input type="text" class="form-control" v-model="sp">
                                 </div>
                                 <div class="custom-control custom-switch d-inline float-right">
-                                    <input
-                                        type="checkbox"
-                                        class="custom-control-input"
-                                        id="customSwitch1"
-                                    >
-                                    <label
-                                        class="custom-control-label"
-                                        for="customSwitch1"
-                                    >Builder</label>
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
                                 </div>
                             </div>
 
                             <div class="form-group" v-if="sn.length==6">
                                 <label>Primary Code:</label>
-                                <div class="input-group input-group-sm">
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        :class="{'is-valid':countryCode.indexOf(ccComputed)!=-1}"
-                                        placeholder="Country Code:"
-                                        autocomplete="off"
-                                        v-model="ccComputed"
-                                        data-provide="typeahead"
-                                        data-source='["ARG","AUS","AUT","BGD","BEL","BOL","BIH","BRA","BGR","KHM","CMR","CAN","CHL","CHN","COL","CRI","HRV","CUB","CYP","CZE","DNK","ECU","EGY","FIN","FRA","DEU","GRC","HKG","HUN","ISL","IND","IDN","IRN","IRQ","IRL","ISR","ITA","JPN","KOR","LAO","LUX","MAC","MYS","MDV","MEX","MCO","MNG","MAR","MMR","NPL","NLD","NZL","NGA","NOR","PAK","PRY","PER","PHL","POL","PRT","QAT","ROU","RUS","SAU","SEN","SRB","SGP","SVK","SVN","ZAF","ESP","LKA","SWE","CHE","TWN","THA","TUN","TUR","UKR","ARE","GBR","USA","URY","VEN","VNM"]'
-                                        >
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="Language Code:"
-                                        autocomplete="off"
-                                        v-model="lcComputed"
-                                        data-provide="typeahead"
-                                        data-source='["E","CHM","CHT","JP","KR","BA","ND","TH","VT","DE","FR","PR","IT","PO","SP","RU","TU","HU","BU","RO","NL","DA","CZ","SW","AR","HI"]'
-                                        :class="{'is-valid':lang.indexOf(lcComputed)!=-1}"
-                                        >
-
-                                    <!-- Modal -->
-                                    <div
-                                        class="modal fade"
-                                        id="CodeList"
-                                        tabindex="-1"
-                                        role="dialog"
-                                        aria-labelledby="CodeListLabel"
-                                        aria-hidden="true"
-                                        >
-                                        <div
-                                            class="modal-dialog modal-dialog-scrollable"
-                                            role="document"
-                                            >
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5
-                                                        class="modal-title"
-                                                        id="CodeListLabel"
-                                                    >Code list</h5>
-                                                    <button
-                                                        type="button"
-                                                        class="close"
-                                                        data-dismiss="modal"
-                                                        aria-label="Close"
-                                                    >
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            <ul
-                                                                class="nav nav-tabs card-header-tabs"
-                                                                id="pills-tab"
-                                                                role="tablist"
-                                                            >
-                                                                <li class="nav-item">
-                                                                    <a
-                                                                        class="nav-link active text-secondary"
-                                                                        id="pills-home-tab"
-                                                                        data-toggle="pill"
-                                                                        href="#country-code"
-                                                                        role="tab"
-                                                                        aria-controls="pills-home"
-                                                                        aria-selected="true"
-                                                                    >Country
-                                                                        Code</a>
-                                                                </li>
-                                                                <li class="nav-item">
-                                                                    <a
-                                                                        class="nav-link text-secondary"
-                                                                        id="pills-profile-tab"
-                                                                        data-toggle="pill"
-                                                                        href="#language-code"
-                                                                        role="tab"
-                                                                        aria-controls="pills-profile"
-                                                                        aria-selected="false"
-                                                                    >Language
-                                                                        Code</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <div
-                                                                class="tab-content"
-                                                                id="pills-tabContent"
-                                                                >
-                                                                <div
-                                                                    class="tab-pane fade show active"
-                                                                    id="country-code"
-                                                                    role="tabpanel"
-                                                                    aria-labelledby="pills-home-tab"
-                                                                    >
-                                                                    <table class="table">
-                                                                        <thead class="thead-light">
-                                                                            <tr>
-                                                                                <th scope="col">#</td>
-                                                                                <th scope="col">Country</td>
-                                                                                <th scope="col">Codes</td>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >1</th>
-                                                                                <td class="country">Argentina</td>
-                                                                                <td class="code">ARG</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >2</th>
-                                                                                <td class="country">Australia</td>
-                                                                                <td class="code">AUS</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >3</th>
-                                                                                <td class="country">Austria</td>
-                                                                                <td class="code">AUT</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >4</th>
-                                                                                <td class="country">Bangladesh</td>
-                                                                                <td class="code">BGD</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >5</th>
-                                                                                <td class="country">Belgium</td>
-                                                                                <td class="code">BEL</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >6</th>
-                                                                                <td class="country">Bolivia</td>
-                                                                                <td class="code">BOL</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >7</th>
-                                                                                <td class="country">Bosnia and
-                                                                                    Herzegovina
-                                                                                </td>
-                                                                                <td class="code">BIH</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >8</th>
-                                                                                <td class="country">Brazil</td>
-                                                                                <td class="code">BRA</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >9</th>
-                                                                                <td class="country">Bulgaria</td>
-                                                                                <td class="code">BGR</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >10</th>
-                                                                                <td class="country">Cambodia</td>
-                                                                                <td class="code">KHM</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >11</th>
-                                                                                <td class="country">Cameroon</td>
-                                                                                <td class="code">CMR</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >12</th>
-                                                                                <td class="country">Canada</td>
-                                                                                <td class="code">CAN</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >13</th>
-                                                                                <td class="country">Chile</td>
-                                                                                <td class="code">CHL</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >14</th>
-                                                                                <td class="country">China</td>
-                                                                                <td class="code">CHN</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >15</th>
-                                                                                <td class="country">Colombia</td>
-                                                                                <td class="code">COL</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >16</th>
-                                                                                <td class="country">Costa Rica</td>
-                                                                                <td class="code">CRI</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >17</th>
-                                                                                <td class="country">Croatia</td>
-                                                                                <td class="code">HRV</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >18</th>
-                                                                                <td class="country">Cuba</td>
-                                                                                <td class="code">CUB</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >19</th>
-                                                                                <td class="country">Cyprus</td>
-                                                                                <td class="code">CYP</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >20</th>
-                                                                                <td class="country">Czech Republic</td>
-                                                                                <td class="code">CZE</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >21</th>
-                                                                                <td class="country">Denmark</td>
-                                                                                <td class="code">DNK</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >22</th>
-                                                                                <td class="country">Ecuador</td>
-                                                                                <td class="code">ECU</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >23</th>
-                                                                                <td class="country">Egypt</td>
-                                                                                <td class="code">EGY</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >24</th>
-                                                                                <td class="country">Finland</td>
-                                                                                <td class="code">FIN</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >25</th>
-                                                                                <td class="country">France</td>
-                                                                                <td class="code">FRA</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >26</th>
-                                                                                <td class="country">Germany</td>
-                                                                                <td class="code">DEU</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >27</th>
-                                                                                <td class="country">Greece</td>
-                                                                                <td class="code">GRC</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >28</th>
-                                                                                <td class="country">Hong Kong</td>
-                                                                                <td class="code">HKG</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >29</th>
-                                                                                <td class="country">Hungary</td>
-                                                                                <td class="code">HUN</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >30</th>
-                                                                                <td class="country">Iceland</td>
-                                                                                <td class="code">ISL</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >31</th>
-                                                                                <td class="country">India</td>
-                                                                                <td class="code">IND</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >32</th>
-                                                                                <td class="country">Indonesia</td>
-                                                                                <td class="code">IDN</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >33</th>
-                                                                                <td class="country">Iran, Islamic
-                                                                                    Republic
-                                                                                    of
-                                                                                </td>
-                                                                                <td class="code">IRN</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >34</th>
-                                                                                <td class="country">Iraq</td>
-                                                                                <td class="code">IRQ</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >35</th>
-                                                                                <td class="country">Ireland</td>
-                                                                                <td class="code">IRL</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >36</th>
-                                                                                <td class="country">Israel</td>
-                                                                                <td class="code">ISR</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >37</th>
-                                                                                <td class="country">Italy</td>
-                                                                                <td class="code">ITA</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >38</th>
-                                                                                <td class="country">Japan</td>
-                                                                                <td class="code">JPN</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >39</th>
-                                                                                <td class="country">Korea, Republic of
-                                                                                </td>
-                                                                                <td class="code">KOR</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >40</th>
-                                                                                <td class="country">Lao People's
-                                                                                    Democratic
-                                                                                    d Republic</td>
-                                                                                <td class="code">LAO</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >41</th>
-                                                                                <td class="country">Luxembourg</td>
-                                                                                <td class="code">LUX</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >42</th>
-                                                                                <td class="country">Macao</td>
-                                                                                <td class="code">MAC</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >43</th>
-                                                                                <td class="country">Malaysia</td>
-                                                                                <td class="code">MYS</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >44</th>
-                                                                                <td class="country">Maldives</td>
-                                                                                <td class="code">MDV</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >45</th>
-                                                                                <td class="country">Mexico</td>
-                                                                                <td class="code">MEX</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >46</th>
-                                                                                <td class="country">Monaco</td>
-                                                                                <td class="code">MCO</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >47</th>
-                                                                                <td class="country">Mongolia</td>
-                                                                                <td class="code">MNG</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >48</th>
-                                                                                <td class="country">Morocco</td>
-                                                                                <td class="code">MAR</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >49</th>
-                                                                                <td class="country">Myanmar</td>
-                                                                                <td class="code">MMR</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >50</th>
-                                                                                <td class="country">Nepal</td>
-                                                                                <td class="code">NPL</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >51</th>
-                                                                                <td class="country">Netherlands</td>
-                                                                                <td class="code">NLD</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >52</th>
-                                                                                <td class="country">New Zealand</td>
-                                                                                <td class="code">NZL</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >53</th>
-                                                                                <td class="country">Nigeria</td>
-                                                                                <td class="code">NGA</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >54</th>
-                                                                                <td class="country">Norway</td>
-                                                                                <td class="code">NOR</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >55</th>
-                                                                                <td class="country">Pakistan</td>
-                                                                                <td class="code">PAK</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >56</th>
-                                                                                <td class="country">Paraguay</td>
-                                                                                <td class="code">PRY</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >57</th>
-                                                                                <td class="country">Peru</td>
-                                                                                <td class="code">PER</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >58</th>
-                                                                                <td class="country">Philippines</td>
-                                                                                <td class="code">PHL</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >59</th>
-                                                                                <td class="country">Poland</td>
-                                                                                <td class="code">POL</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >60</th>
-                                                                                <td class="country">Portugal</td>
-                                                                                <td class="code">PRT</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >61</th>
-                                                                                <td class="country">Qatar</td>
-                                                                                <td class="code">QAT</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >62</th>
-                                                                                <td class="country">Romania</td>
-                                                                                <td class="code">ROU</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >63</th>
-                                                                                <td class="country">Russian Federation
-                                                                                </td>
-                                                                                <td class="code">RUS</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >64</th>
-                                                                                <td class="country">Saudi Arabia</td>
-                                                                                <td class="code">SAU</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >65</th>
-                                                                                <td class="country">Senegal</td>
-                                                                                <td class="code">SEN</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >66</th>
-                                                                                <td class="country">Serbia</td>
-                                                                                <td class="code">SRB</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >67</th>
-                                                                                <td class="country">Singapore</td>
-                                                                                <td class="code">SGP</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >68</th>
-                                                                                <td class="country">Slovakia</td>
-                                                                                <td class="code">SVK</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >69</th>
-                                                                                <td class="country">Slovenia</td>
-                                                                                <td class="code">SVN</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >70</th>
-                                                                                <td class="country">South Africa</td>
-                                                                                <td class="code">ZAF</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >71</th>
-                                                                                <td class="country">Spain</td>
-                                                                                <td class="code">ESP</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >72</th>
-                                                                                <td class="country">Sri Lanka</td>
-                                                                                <td class="code">LKA</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >73</th>
-                                                                                <td class="country">Sweden</td>
-                                                                                <td class="code">SWE</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >74</th>
-                                                                                <td class="country">Switzerland</td>
-                                                                                <td class="code">CHE</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >75</th>
-                                                                                <td class="country">Taiwan</td>
-                                                                                <td class="code">TWN</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >76</th>
-                                                                                <td class="country">Thailand</td>
-                                                                                <td class="code">THA</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >77</th>
-                                                                                <td class="country">Tunisia</td>
-                                                                                <td class="code">TUN</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >78</th>
-                                                                                <td class="country">Turkey</td>
-                                                                                <td class="code">TUR</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >79</th>
-                                                                                <td class="country">Ukraine</td>
-                                                                                <td class="code">UKR</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >80</th>
-                                                                                <td class="country">United Arab Emirates
-                                                                                </td>
-                                                                                <td class="code">ARE</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >81</th>
-                                                                                <td class="country">United Kingdom</td>
-                                                                                <td class="code">GBR</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >82</th>
-                                                                                <td class="country">United States</td>
-                                                                                <td class="code">USA</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >83</th>
-                                                                                <td class="country">Uruguay</td>
-                                                                                <td class="code">URY</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >84</th>
-                                                                                <td class="country">Venezuela</td>
-                                                                                <td class="code">VEN</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >85</th>
-                                                                                <td class="country">Viet Nam</td>
-                                                                                <td class="code">VNM</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                                <div
-                                                                    class="tab-pane fade"
-                                                                    id="language-code"
-                                                                    role="tabpanel"
-                                                                    aria-labelledby="pills-profile-tab"
-                                                                >
-                                                                    <table class="table">
-                                                                        <thead class="thead-light">
-                                                                            <th scope="col">#</th>
-                                                                            <th scope="col">Language</th>
-                                                                            <th scope="col">Codes</th>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >1</th>
-                                                                                <td class="language">English</td>
-                                                                                <td class="code">E</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >2</th>
-                                                                                <td class="language">Chinese Mordern
-                                                                                </td>
-                                                                                <td class="code">CHM</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >3</th>
-                                                                                <td class="language">Chinse Traditional
-                                                                                </td>
-                                                                                <td class="code">CHT</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >4</th>
-                                                                                <td class="language">Japanese</td>
-                                                                                <td class="code">JP</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >5</th>
-                                                                                <td class="language">Korean</td>
-                                                                                <td class="code">KR</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >6</th>
-                                                                                <td class="language">Malaysia</td>
-                                                                                <td class="code">BA</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >7</th>
-                                                                                <td class="language">Indonesian</td>
-                                                                                <td class="code">ND</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >8</th>
-                                                                                <td class="language">Thai</td>
-                                                                                <td class="code">TH</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >9</th>
-                                                                                <td class="language">Vietnam</td>
-                                                                                <td class="code">VT</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >10</th>
-                                                                                <td class="language">Germany</td>
-                                                                                <td class="code">DE</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >11</th>
-                                                                                <td class="language">French</td>
-                                                                                <td class="code">FR</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >12</th>
-                                                                                <td class="language">Portuguese</td>
-                                                                                <td class="code">PR</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >13</th>
-                                                                                <td class="language">Italian</td>
-                                                                                <td class="code">IT</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >14</th>
-                                                                                <td class="language">Polish</td>
-                                                                                <td class="code">PO</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >15</th>
-                                                                                <td class="language">Spanish</td>
-                                                                                <td class="code">SP</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >16</th>
-                                                                                <td class="language">Russian</td>
-                                                                                <td class="code">RU</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >17</th>
-                                                                                <td class="language">Turkish</td>
-                                                                                <td class="code">TU</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >18</th>
-                                                                                <td class="language">Hungary</td>
-                                                                                <td class="code">HU</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >19</th>
-                                                                                <td class="language">Bulgarian</td>
-                                                                                <td class="code">BU</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >20</th>
-                                                                                <td class="language">Romanian</td>
-                                                                                <td class="code">RO</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >21</th>
-                                                                                <td class="language">Dutch</td>
-                                                                                <td class="code">NL</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >22</th>
-                                                                                <td class="language">Danish</td>
-                                                                                <td class="code">DA</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >23</th>
-                                                                                <td class="language">Czech</td>
-                                                                                <td class="code">CZ</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >24</th>
-                                                                                <td class="language">Swedish</td>
-                                                                                <td class="code">SW</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >25</th>
-                                                                                <td class="language">Arabic</td>
-                                                                                <td class="code">AR</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th
-                                                                                    class="no"
-                                                                                    scope="row"
-                                                                                >26</th>
-                                                                                <td class="language">Hindi</td>
-                                                                                <td class="code">HI</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button
-                                                        type="button"
-                                                        class="btn btn-secondary"
-                                                        data-dismiss="modal"
-                                                    >Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="input-group-append">
-                                        <button
-                                            class="btn btn-outline-secondary"
-                                            type="button"
-                                            data-toggle="modal"
-                                            data-target="#CodeList"
-                                        ><i class="fa fa-navicon"></i></button>
-                                    </div>
+                                <div class="input-group input-group-sm" style="font-family: Consolas;">
+                                    <select class="form-control form-control-sm" v-model="countryCodeSelected">
+                                        <option selected value="0">countryCode</option>
+                                        <option v-for="(i,index) in countryCode" :value="index+1">{{i}}</option>
+                                    </select>
+                                    <select class="form-control form-control-sm" v-model="langSelected">
+                                        <option selected value="0">Lang</option>
+                                        <option v-for="(i,index) in lang" :value="index+1">{{i}}</option>
+                                    </select>
                                 </div>
                             </div>
 
-                            <button
-                                class="btn btn-light badge badge-light"
-                                type="button"
-                                data-toggle="collapse"
-                                data-target=".multi-collapse"
-                                aria-expanded="false"
-                                aria-controls="spm_info spm_link"
-                                v-if="sn.length==6"
-                                >Super PM</button>
+                            <button class="btn btn-light badge badge-light" type="button" data-toggle="collapse"
+                                data-target=".multi-collapse" aria-expanded="false" aria-controls="spm_info spm_link"
+                                v-if="sn.length==6">Super PM</button>
 
-                            <div
-                                id="spm_info"
-                                class="collapse multi-collapse"
-                            >
+                            <div id="spm_info" class="collapse multi-collapse">
                                 <hr />
                                 <div class="form-group">
                                     <label>Project Token:</label>
                                     <div class="input-group input-group-sm">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="pt"
-                                        >
+                                        <input type="text" class="form-control" v-model="pt">
                                         <div class="input-group-append">
-                                            <button
-                                                class="btn btn-outline-secondary"
-                                                type="button"
-                                            ><i class="fa fa-paste"></i></button>
+                                            <button class="btn btn-outline-secondary" type="button"><i
+                                                    class="fa fa-paste"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -1197,11 +99,7 @@
                                 <div class="form-group">
                                     <label>Survey ID:</label>
                                     <div class="input-group input-group-sm">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="si"
-                                        >
+                                        <input type="text" class="form-control" v-model="si">
                                     </div>
                                 </div>
                             </div>
@@ -1225,141 +123,75 @@
                     </div>
 
                 </div>
-                <div
-                    class="col col-12 float-right"
-                    style="margin-top: 2em;"
-                    v-if="sn.length==6"
-                    :class="{'col-xl-8 col-lg-8 col-md-7':sn.length==6}"
-                    >
+                <div class="col col-12 float-right" style="margin-top: 2em;" v-if="sn.length==6"
+                    :class="{'col-xl-8 col-lg-8 col-md-7':sn.length==6}">
                     <div class="card shadow">
                         <div class="card-header">
-                            <ul
-                                class="nav nav-tabs card-header-tabs"
-                                id="myTab"
-                                role="tablist"
-                            >
+                            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a
-                                        class="nav-link active text-secondary"
-                                        id="home-tab"
-                                        data-toggle="tab"
-                                        href="#home"
-                                        role="tab"
-                                        aria-controls="home"
-                                        aria-selected="true"
-                                    >Survey
+                                    <a class="nav-link active text-secondary" id="home-tab" data-toggle="tab"
+                                        href="#home" role="tab" aria-controls="home" aria-selected="true">Survey
                                         Links:</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a
-                                        class="nav-link text-secondary"
-                                        id="profile-tab"
-                                        data-toggle="tab"
-                                        href="#profile"
-                                        role="tab"
-                                        aria-controls="profile"
-                                        aria-selected="false"
-                                    >Other
+                                    <a class="nav-link text-secondary" id="profile-tab" data-toggle="tab"
+                                        href="#profile" role="tab" aria-controls="profile" aria-selected="false">Other
                                         useful links:</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="card-body">
-                            <div
-                                class="tab-content"
-                                id="myTabContent"
-                            >
-                                <div
-                                    class="tab-pane fade show active"
-                                    id="home"
-                                    role="tabpanel"
-                                    aria-labelledby="home-tab"
-                                >
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                    aria-labelledby="home-tab">
                                     <div class="form-group" v-if="testLink!='#'">
                                         <span>Test link:</span>
                                         <div class="input-group input-group-sm">
-                                            <input
-                                                id="testLink"
-                                                type="text"
-                                                class="form-control"
-                                                v-bind:value="testLink"
-                                                readonly
-                                            >
+                                            <input id="testLink" type="text" class="form-control"
+                                                v-bind:value="testLink" readonly>
                                             <div class="input-group-append">
-                                                <a
-                                                    class="btn btn-outline-secondary"
-                                                    :href="testLink"
-                                                    target="_blank"
-                                                >Go</a>
-                                                <button
-                                                    class="btn btn-outline-secondary clipboard"
-                                                    data-clipboard-target="#testLink"
-                                                    type="button"
-                                                ><i class="fa fa-copy"></i></button>
+                                                <a class="btn btn-outline-secondary" :href="testLink"
+                                                    target="_blank">Go</a>
+                                                <button class="btn btn-outline-secondary clipboard"
+                                                    data-clipboard-target="#testLink" type="button"><i
+                                                        class="fa fa-copy"></i></button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group" v-if="liveLink!='#'">
                                         <span>Live cint link:</span>
                                         <div class="input-group input-group-sm">
-                                            <input
-                                                id="liveLink"
-                                                type="text"
-                                                class="form-control"
-                                                readonly
-                                                v-bind:value="liveLink"
-                                            >
+                                            <input id="liveLink" type="text" class="form-control" readonly
+                                                v-bind:value="liveLink">
                                             <div class="input-group-append">
-                                                <a
-                                                    class="btn btn-outline-secondary"
-                                                    :href="liveLink"
-                                                    target="_blank"
-                                                >Go</a>
-                                                <button
-                                                    class="btn btn-outline-secondary clipboard"
-                                                    data-clipboard-target="#liveLink"
-                                                    type="button"
-                                                ><i class="fa fa-copy"></i></button>
+                                                <a class="btn btn-outline-secondary" :href="liveLink"
+                                                    target="_blank">Go</a>
+                                                <button class="btn btn-outline-secondary clipboard"
+                                                    data-clipboard-target="#liveLink" type="button"><i
+                                                        class="fa fa-copy"></i></button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group" v-if="wechatLink!='#'">
                                         <span>WeChat link:</span>
                                         <div class="input-group input-group-sm">
-                                            <input
-                                                id="wechatLink"
-                                                type="text"
-                                                class="form-control"
-                                                readonly
-                                                v-bind:value="wechatLink"
-                                            >
+                                            <input id="wechatLink" type="text" class="form-control" readonly
+                                                v-bind:value="wechatLink">
                                             <div class="input-group-append">
-                                                <a
-                                                    class="btn btn-outline-secondary"
-                                                    :href="wechatLink"
-                                                    target="_blank"
-                                                >Go</a>
-                                                <button
-                                                    class="btn btn-outline-secondary clipboard"
-                                                    data-clipboard-target="#wechatLink"
-                                                    type="button"
-                                                ><i class="fa fa-copy"></i></button>
+                                                <a class="btn btn-outline-secondary" :href="wechatLink"
+                                                    target="_blank">Go</a>
+                                                <button class="btn btn-outline-secondary clipboard"
+                                                    data-clipboard-target="#wechatLink" type="button"><i
+                                                        class="fa fa-copy"></i></button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div
-                                        id="spm_link"
-                                        class="collapse multi-collapse"
-                                    >
+                                    <div id="spm_link" class="collapse multi-collapse">
                                         <div class="form-group" v-if="spmmbLink!='#'">
                                             <span>SuperPM MB link:</span>
                                             <div class="input-group input-group-sm">
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    readonly
-                                                    v-bind:value="spmmbLink"
-                                                >
+                                                <input type="text" class="form-control" readonly
+                                                    v-bind:value="spmmbLink">
                                                 <div class="input-group-append">
                                                     <button class="btn btn-outline-secondary"><a>Go</a></button>
                                                     <button class="btn btn-outline-secondary"><i
@@ -1370,12 +202,8 @@
                                         <div class="form-group" v-if="spmmbLink!='#'">
                                             <span>SuperPM TNS link:</span>
                                             <div class="input-group input-group-sm">
-                                                <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    readonly
-                                                    v-bind:value="spmmbLink"
-                                                >
+                                                <input type="text" class="form-control" readonly
+                                                    v-bind:value="spmmbLink">
                                                 <div class="input-group-append">
                                                     <button class="btn btn-outline-secondary"><a>Go</a></button>
                                                     <button class="btn btn-outline-secondary"><i
@@ -1385,20 +213,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div
-                                    class="tab-pane fade"
-                                    id="profile"
-                                    role="tabpanel"
-                                    aria-labelledby="profile-tab"
-                                    >
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <div class="form-group">
                                         <span>Survey summary:</span>
                                         <div class="input-group input-group-sm">
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                readonly
-                                            >
+                                            <input type="text" class="form-control" readonly>
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-secondary"><a>Go</a></button>
                                                 <button class="btn btn-outline-secondary"><i
@@ -1409,11 +228,7 @@
                                     <div class="form-group">
                                         <span>Report 2010:</span>
                                         <div class="input-group input-group-sm">
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                readonly
-                                            >
+                                            <input type="text" class="form-control" readonly>
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-secondary"><a>Go</a></button>
                                                 <button class="btn btn-outline-secondary"><i
@@ -1424,11 +239,7 @@
                                     <div class="form-group">
                                         <span>Data download:</span>
                                         <div class="input-group input-group-sm">
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                readonly
-                                            >
+                                            <input type="text" class="form-control" readonly>
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-secondary"><a>Go</a></button>
                                                 <button class="btn btn-outline-secondary"><i
@@ -1439,11 +250,7 @@
                                     <div class="form-group">
                                         <span>Disqualify/Requalify data:</span>
                                         <div class="input-group input-group-sm">
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                readonly
-                                            >
+                                            <input type="text" class="form-control" readonly>
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-secondary"><a>Go</a></button>
                                                 <button class="btn btn-outline-secondary"><i
@@ -1454,11 +261,7 @@
                                     <div class="form-group">
                                         <span>Data Editor:</span>
                                         <div class="input-group input-group-sm">
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                readonly
-                                            >
+                                            <input type="text" class="form-control" readonly>
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-secondary"><a>Go</a></button>
                                                 <button class="btn btn-outline-secondary"><i
@@ -1469,11 +272,7 @@
                                     <div class="form-group">
                                         <span>Data View (Specified):</span>
                                         <div class="input-group input-group-sm">
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                readonly
-                                            >
+                                            <input type="text" class="form-control" readonly>
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-secondary"><a>Go</a></button>
                                                 <button class="btn btn-outline-secondary"><i
@@ -1484,11 +283,7 @@
                                     <div class="form-group">
                                         <span>Project Warnings:</span>
                                         <div class="input-group input-group-sm">
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                readonly
-                                            >
+                                            <input type="text" class="form-control" readonly>
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-secondary"><a>Go</a></button>
                                                 <button class="btn btn-outline-secondary"><i
@@ -1515,11 +310,9 @@
     </footer>
 
     <!-- <script src="./js/jquery-1.11.0.min.js"></script> -->
-    <script
-        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"
-    ></script>
+        crossorigin="anonymous"></script>
     <script type='text/javascript'>
         $(document).ready(
             function () {
@@ -1529,20 +322,13 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="./js/index.js"></script>
-    <script
-        type="text/javascript"
-        src="./js/bootstrap3-typeahead.min.js"
-    ></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    <script type="text/javascript" src="./js/bootstrap3-typeahead.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"
-    ></script>
-    <script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"
-    ></script>
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

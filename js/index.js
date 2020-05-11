@@ -3,8 +3,6 @@ var app = new Vue({
   data: {
     sn: "",
     sp: "",
-    cc: "",
-    lc: "",
     pt: "47177e38-057b-bf6e-a3e4d5e035eb",
     si: "sureyid",
     mainLink: "https://surveys.globaltestmarket.com/survey/apac",
@@ -36,7 +34,7 @@ var app = new Vue({
       "SW",
       "AR",
       "HI",
-    ],
+    ].sort(),
     countryCode: [
       "ARG",
       "AUS",
@@ -123,24 +121,20 @@ var app = new Vue({
       "URY",
       "VEN",
       "VNM",
-    ],
+    ].sort(),
+    countryCodeSelected: 0,
+    langSelected: 0,
   },
   computed: {
-    ccComputed: {
-      get: function () {
-        return this.cc;
-      },
-      set: function (val) {
-        this.cc = val.toUpperCase();
-      },
+    ccComputed: function () {
+      if (this.countryCodeSelected) {
+        return this.countryCode[this.countryCodeSelected - 1];
+      }
     },
-    lcComputed: {
-      get: function () {
-        return this.lc;
-      },
-      set: function (val) {
-        this.lc = val.toUpperCase();
-      },
+    lcComputed: function () {
+      if (this.langSelected) {
+        return this.lang[this.langSelected - 1];
+      }
     },
     testLink: function () {
       let sn = "";
@@ -153,11 +147,11 @@ var app = new Vue({
       if (this.sp) {
         sp = "/" + this.sp;
       }
-      if (this.cc) {
-        cc = "&countryCode=" + this.cc;
+      if (this.countryCodeSelected) {
+        cc = "&countryCode=" + this.ccComputed;
       }
-      if (this.lc) {
-        lc = "&lang=" + this.lc;
+      if (this.langSelected) {
+        lc = "&lang=" + this.lcComputed;
       }
       if (this.sn.length === 6) {
         return this.mainLink + sn + sp + "?panels=LFP&list=0" + cc + lc;
@@ -176,13 +170,17 @@ var app = new Vue({
       if (this.sp) {
         sp = "/" + this.sp;
       }
-      if (this.cc) {
-        cc = "&countryCode=" + this.cc;
+      if (this.countryCodeSelected) {
+        cc = "&countryCode=" + this.ccComputed;
       }
-      if (this.lc) {
-        lc = "&lang=" + this.lc;
+      if (this.langSelected) {
+        lc = "&lang=" + this.lcComputed;
       }
-      if (this.sn.length === 6 && this.cc.length === 3 && this.lc) {
+      if (
+        this.sn.length === 6 &&
+        this.countryCodeSelected &&
+        this.langSelected
+      ) {
         return (
           this.mainLink + sn + sp + "?panels=LFP&list=80001&ID=[ID]" + cc + lc
         );
@@ -201,13 +199,17 @@ var app = new Vue({
       if (this.sp) {
         sp = "/" + this.sp;
       }
-      if (this.cc) {
-        cc = "&countryCode=" + this.cc;
+      if (this.countryCodeSelected) {
+        cc = "&countryCode=" + this.ccComputed;
       }
-      if (this.lc) {
-        lc = "&lang=" + this.lc;
+      if (this.langSelected) {
+        lc = "&lang=" + this.lcComputed;
       }
-      if (this.sn.length === 6 && this.cc.length === 3 && this.lc) {
+      if (
+        this.sn.length === 6 &&
+        this.countryCodeSelected &&
+        this.langSelected
+      ) {
         return (
           this.mainLink +
           sn +
@@ -232,16 +234,16 @@ var app = new Vue({
       if (this.sp) {
         sp = "/" + this.sp;
       }
-      if (this.cc) {
-        cc = "&countryCode=" + this.cc;
+      if (this.countryCodeSelected) {
+        cc = "&countryCode=" + this.ccComputed;
       }
-      if (this.lc) {
-        lc = "&lang=" + this.lc;
+      if (this.langSelected) {
+        lc = "&lang=" + this.lcComputed;
       }
       if (
         this.sn.length === 6 &&
-        this.cc.length === 3 &&
-        this.lc &&
+        this.countryCodeSelected &&
+        this.langSelected &&
         this.pt &&
         this.si
       ) {
@@ -271,16 +273,16 @@ var app = new Vue({
       if (this.sp) {
         sp = "/" + this.sp;
       }
-      if (this.cc) {
-        cc = "&countryCode=" + this.cc;
+      if (this.countryCodeSelected) {
+        cc = "&countryCode=" + this.ccComputed;
       }
-      if (this.lc) {
-        lc = "&lang=" + this.lc;
+      if (this.langSelected) {
+        lc = "&lang=" + this.lcComputed;
       }
       if (
         this.sn.length === 6 &&
-        this.cc.length === 3 &&
-        this.lc &&
+        this.countryCodeSelected &&
+        this.langSelected &&
         this.pt &&
         this.si
       ) {
