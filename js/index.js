@@ -122,8 +122,8 @@ var app = new Vue({
       "VEN",
       "VNM",
     ].sort(),
-    countryCodeSelected: 0,
-    langSelected: 0,
+    countryCodeSelected: 14,
+    langSelected: 4,
   },
   computed: {
     ccComputed: function () {
