@@ -301,6 +301,19 @@ var app = new Vue({
         return "#";
       }
     },
+    surveySummary() {
+      return (
+        "https://surveys.globaltestmarket.com/rep/apac/C" +
+        this.sn +
+        ":dashboard"
+      );
+    },
+    report2010() {
+      return "https://surveys.globaltestmarket.com/report/apac/C" + this.sn;
+    },
+    editData() {
+      return this.report2010+':edit';
+    },
   },
   watch: {
     sn(val) {
