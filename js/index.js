@@ -126,17 +126,17 @@ var app = new Vue({
     langSelected: 0,
   },
   computed: {
-    ccComputed: function () {
+    ccComputed() {
       if (this.countryCodeSelected) {
         return this.countryCode[this.countryCodeSelected - 1].code;
       }
     },
-    lcComputed: function () {
+    lcComputed() {
       if (this.langSelected) {
         return this.lang[this.langSelected - 1].code;
       }
     },
-    testLink: function () {
+    testLink() {
       let sn = "";
       let sp = "";
       let cc = "";
@@ -159,7 +159,7 @@ var app = new Vue({
         return "#";
       }
     },
-    liveLink: function () {
+    liveLink() {
       let sn = "";
       let sp = "";
       let cc = "";
@@ -188,7 +188,7 @@ var app = new Vue({
         return "#";
       }
     },
-    wechatLink: function () {
+    wechatLink() {
       let sn = "";
       let sp = "";
       let cc = "";
@@ -223,7 +223,7 @@ var app = new Vue({
         return "#";
       }
     },
-    spmmbLink: function () {
+    spmmbLink() {
       let sn = "";
       let sp = "";
       let cc = "";
@@ -262,7 +262,7 @@ var app = new Vue({
         return "#";
       }
     },
-    spmtnsLink: function () {
+    spmtnsLink() {
       let sn = "";
       let sp = "";
       let cc = "";
@@ -301,9 +301,22 @@ var app = new Vue({
         return "#";
       }
     },
+    surveySummary() {
+      return (
+        "https://surveys.globaltestmarket.com/rep/apac/C" +
+        this.sn +
+        ":dashboard"
+      );
+    },
+    report2010() {
+      return "https://surveys.globaltestmarket.com/report/apac/C" + this.sn;
+    },
+    editData() {
+      return this.report2010+':edit';
+    },
   },
   watch: {
-    sn: function (val) {
+    sn(val) {
       str = val.replace(/[^\d]/g, "");
       if (str.length <= 6) {
         this.sn = str;
