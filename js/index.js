@@ -312,7 +312,7 @@ const app = new Vue({
       return "https://surveys.globaltestmarket.com/report/apac/C" + this.sn;
     },
     editData() {
-      return this.report2010+':edit';
+      return 'https://surveys.globaltestmarket.com/rep/apac/C'+this.sn+':edit';
     },
   },
   watch: {
