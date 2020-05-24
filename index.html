@@ -42,17 +42,17 @@
 							<div class="form-group">
 								<label>SN:</label>
 								<div class="input-group input-group-sm">
-									<input type="text" class="form-control" v-model="sn" :class="{'is-valid':sn.length==6}"
+									<input type="text" class="form-control" v-model="sn" :class="{'is-valid':snComputed}"
 										placeholder="Please type in your SN number:">
 								</div>
 							</div>
 
-							<div class="form-group" v-if="sn.length==6">
+							<div class="form-group" v-if="snComputed">
 								<label>Survey Path:</label>
 								<div class="input-group input-group-sm">
 									<div class="input-group-prepend">
 										<span class="input-group-text">apac</span>
-										<span class="input-group-text" v-if="sn.length===6">C{{sn}}</span>
+										<span class="input-group-text" v-if="snComputed">C{{sn}}</span>
 									</div>
 									<input type="text" class="form-control" v-model="sp" placeholder="temp…"
 										:class="{'is-valid':spComputed}">
@@ -62,7 +62,7 @@
 								</div>
 							</div>
 
-							<div class="form-group" v-if="sn.length==6">
+							<div class="form-group" v-if="snComputed">
 								<label>Primary Code:</label>
 								<div class="input-group input-group-sm" style="font-family: Consolas;">
 									<select class="form-control form-control-sm" v-model="cc">
@@ -80,7 +80,7 @@
 
 							<button class="btn btn-light badge badge-light" type="button" data-toggle="collapse"
 								data-target=".multi-collapse" aria-expanded="false" aria-controls="spm_info spm_link"
-								v-if="sn.length==6">Super PM</button>
+								v-if="snComputed">Super PM</button>
 
 							<div id="spm_info" class="collapse multi-collapse">
 								<hr />
@@ -116,8 +116,8 @@
 					</div>
 
 				</div>
-				<div class="col col-12 float-right" style="margin-top: 2em;" v-if="sn.length==6"
-					:class="{'col-xl-8 col-lg-8 col-md-7':sn.length==6}">
+				<div class="col col-12 float-right" style="margin-top: 2em;" v-if="snComputed"
+					:class="{'col-xl-8 col-lg-8 col-md-7':snComputed}">
 					<div class="card shadow">
 						<div class="card-header">
 							<ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
