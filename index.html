@@ -36,7 +36,8 @@
 						<div class="card-body">
 							<h5 class="card-title">Survey Info:
 								<span class="badge float-right badge-secondary" data-toggle="tooltip" data-placement="bottom"
-									data-html="true" title="<u>更多链接</u>已更新,<br/>快来使用吧！" v-if="sn.length!==6">new</span></h5>
+									data-html="true" title="修复了survey path在Other useful links中的问题，更新了survey path的设定,更新了脚本加载顺序"
+									v-if="sn.length!==6">new</span></h5>
 							<hr />
 							<div class="form-group">
 								<label>SN:</label>
@@ -53,7 +54,8 @@
 										<span class="input-group-text">apac</span>
 										<span class="input-group-text" v-if="sn.length===6">C{{sn}}</span>
 									</div>
-									<input type="text" class="form-control" v-model="sp" placeholder="temp…">
+									<input type="text" class="form-control" v-model="sp" placeholder="temp…"
+										:class="{'is-valid':spComputed}">
 								</div>
 								<div class="custom-control custom-switch d-inline float-right">
 									<input type="checkbox" class="custom-control-input" id="customSwitch1">
@@ -63,14 +65,14 @@
 							<div class="form-group" v-if="sn.length==6">
 								<label>Primary Code:</label>
 								<div class="input-group input-group-sm" style="font-family: Consolas;">
-									<select class="form-control form-control-sm" v-model="countryCodeSelected">
+									<select class="form-control form-control-sm" v-model="cc">
 										<option selected value="0" disabled>Country code</option>
-										<option v-for="(i,index) in countryCode" :value="index+1">
+										<option v-for="(i,index) in countryCode" :value="i.code">
 											{{i.code}}({{i.country}})</option>
 									</select>
-									<select class="form-control form-control-sm" v-model="langSelected">
+									<select class="form-control form-control-sm" v-model="lc">
 										<option selected value="0" disabled>Language code</option>
-										<option v-for="(i,index) in lang" :value="index+1">{{i.code}}({{i.language}})
+										<option v-for="(i,index) in lang" :value="i.code">{{i.code}}({{i.language}})
 										</option>
 									</select>
 								</div>
@@ -246,6 +248,8 @@
 	</footer>
 
 	<!-- <script src="./js/jquery-1.11.0.min.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="./js/index.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 		crossorigin="anonymous"></script>
@@ -262,8 +266,6 @@
 			$('[data-toggle="popover"]').popover()
 		});
 	</script>
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<script src="./js/index.js"></script>
 	<script type="text/javascript" src="./js/bootstrap3-typeahead.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"

@@ -1,12 +1,13 @@
 const app = new Vue({
   el: "#app",
   data: {
-    sn: "",
-    sp: "",
-    pt: "47177e38-057b-bf6e-a3e4d5e035eb",
-    si: "sureyid",
+    sn: "",//sn number
+    sp: "",//survey path
+    cc: 0,//country code,default is 0
+    lc: 0,//language code,default is 0
+    pt: "47177e38-057b-bf6e-a3e4d5e035eb",// token/table
+    si: "sureyid",//survey id
     mainLink: "https://surveys.globaltestmarket.com/survey/apac",
-    tempLink: "",
     lang: [
       { language: "English", code: "E" },
       { language: "Chinese Mordern", code: "CHM" },
@@ -34,7 +35,7 @@ const app = new Vue({
       { language: "Swedish", code: "SW" },
       { language: "Arabic", code: "AR" },
       { language: "Hindi", code: "HI" },
-    ].sort(),
+    ],//list of language code
     countryCode: [
       { country: "United Arab Emirates", code: "ARE" },
       { country: "Argentina", code: "ARG" },
@@ -121,32 +122,22 @@ const app = new Vue({
       { country: "Venezuela", code: "VEN" },
       { country: "Viet Nam", code: "VNM" },
       { country: "South Africa", code: "ZAF" },
-    ],
-    countryCodeSelected: 0,
-    langSelected: 0,
+    ],//list of country code
   },
   computed: {
-    ccComputed() {
-      if (this.countryCodeSelected) {
-        return this.countryCode[this.countryCodeSelected - 1].code;
+    snComputed() {
+      return "/C" + this.sn
+    },//计算后的sn，后面的连接都是以此来判断的
+    spComputed() {
+      if (/temp(0\d|1[0-2])([0-2]\d|3[0-1])/.exec(this.sp)) {
+        return "/" + this.sp
+      } else {
+        return ""
       }
-    },
-    lcComputed() {
-      if (this.langSelected) {
-        return this.lang[this.langSelected - 1].code;
-      }
-    },
+    },//计算后的survey path，如果不符合规则则返回空
     testLink() {
-      let sn = "";
-      let sp = "";
       let cc = "";
       let lc = "";
-      if (this.sn) {
-        sn = "/C" + this.sn;
-      }
-      if (this.sp) {
-        sp = "/" + this.sp;
-      }
       if (this.countryCodeSelected) {
         cc = "&countryCode=" + this.ccComputed;
       }
@@ -154,22 +145,14 @@ const app = new Vue({
         lc = "&lang=" + this.lcComputed;
       }
       if (this.sn.length === 6) {
-        return this.mainLink + sn + sp + "?panels=LFP&list=0" + cc + lc;
+        return this.mainLink + this.snComputed + this.spComputed + "?panels=LFP&list=0" + cc + lc;
       } else {
         return "#";
       }
-    },
+    },//测试连接
     liveLink() {
-      let sn = "";
-      let sp = "";
       let cc = "";
       let lc = "";
-      if (this.sn) {
-        sn = "/C" + this.sn;
-      }
-      if (this.sp) {
-        sp = "/" + this.sp;
-      }
       if (this.countryCodeSelected) {
         cc = "&countryCode=" + this.ccComputed;
       }
@@ -178,27 +161,18 @@ const app = new Vue({
       }
       if (
         this.sn.length === 6 &&
-        this.countryCodeSelected &&
-        this.langSelected
+        this.snComputed
       ) {
         return (
-          this.mainLink + sn + sp + "?panels=LFP&list=80001&ID=[ID]" + cc + lc
+          this.mainLink + this.spComputed + this.spComputed + "?panels=LFP&list=80001&ID=[ID]" + cc + lc
         );
       } else {
         return "#";
       }
-    },
+    },//live link
     wechatLink() {
-      let sn = "";
-      let sp = "";
       let cc = "";
       let lc = "";
-      if (this.sn) {
-        sn = "/C" + this.sn;
-      }
-      if (this.sp) {
-        sp = "/" + this.sp;
-      }
       if (this.countryCodeSelected) {
         cc = "&countryCode=" + this.ccComputed;
       }
@@ -207,13 +181,12 @@ const app = new Vue({
       }
       if (
         this.sn.length === 6 &&
-        this.countryCodeSelected &&
-        this.langSelected
+        this.snComputed
       ) {
         return (
           this.mainLink +
-          sn +
-          sp +
+          this.snComputed +
+          this.spComputed +
           "?panels=Wechat&list=90888&ID=[ID]&sn=" +
           this.sn +
           cc +
@@ -224,16 +197,8 @@ const app = new Vue({
       }
     },
     spmmbLink() {
-      let sn = "";
-      let sp = "";
       let cc = "";
       let lc = "";
-      if (this.sn) {
-        sn = "/C" + this.sn;
-      }
-      if (this.sp) {
-        sp = "/" + this.sp;
-      }
       if (this.countryCodeSelected) {
         cc = "&countryCode=" + this.ccComputed;
       }
@@ -242,15 +207,14 @@ const app = new Vue({
       }
       if (
         this.sn.length === 6 &&
-        this.countryCodeSelected &&
-        this.langSelected &&
+        this.snComputed &&
         this.pt &&
         this.si
       ) {
         return (
           this.mainLink +
-          sn +
-          sp +
+          this.snComputed +
+          this.spComputed +
           "?panels=SPM&list=90997&ID=[ID]&table=" +
           this.pt +
           cc +
@@ -263,16 +227,8 @@ const app = new Vue({
       }
     },
     spmtnsLink() {
-      let sn = "";
-      let sp = "";
       let cc = "";
       let lc = "";
-      if (this.sn) {
-        sn = "/C" + this.sn;
-      }
-      if (this.sp) {
-        sp = "/" + this.sp;
-      }
       if (this.countryCodeSelected) {
         cc = "&countryCode=" + this.ccComputed;
       }
@@ -281,15 +237,14 @@ const app = new Vue({
       }
       if (
         this.sn.length === 6 &&
-        this.countryCodeSelected &&
-        this.langSelected &&
+        this.snComputed &&
         this.pt &&
         this.si
       ) {
         return (
           this.mainLink +
-          sn +
-          sp +
+          this.snComputed +
+          this.spComputed +
           "?panels=SPM&list=90996&ID=[ID]&table=" +
           this.pt +
           cc +
@@ -303,16 +258,22 @@ const app = new Vue({
     },
     surveySummary() {
       return (
-        "https://surveys.globaltestmarket.com/rep/apac/C" +
-        this.sn +
+        "https://surveys.globaltestmarket.com/rep/apac" +
+        this.snComputed +
+        this.spComputed +
         ":dashboard"
       );
     },
     report2010() {
-      return "https://surveys.globaltestmarket.com/report/apac/C" + this.sn;
+      return "https://surveys.globaltestmarket.com/report/apac" +
+        this.snComputed +
+        this.spComputed;
     },
     editData() {
-      return 'https://surveys.globaltestmarket.com/rep/apac/C'+this.sn+':edit';
+      return 'https://surveys.globaltestmarket.com/rep/apac' +
+        this.snComputed +
+        this.spComputed +
+        ':edit';
     },
   },
   watch: {
