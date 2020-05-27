@@ -1,3 +1,12 @@
+const cpmLink = {
+  template:'#cpmLink',
+  props:{
+    cid:String,
+    cname:String,
+    clink:String,
+  }
+}
+
 const app = new Vue({
   el: "#app",
   data: {
@@ -607,4 +616,7 @@ const app = new Vue({
       }
     },
   },
+  components:{
+    cpmLink
+  }
 });

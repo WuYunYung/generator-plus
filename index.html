@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="./css/bootstrap.min.css">
 	<link rel="stylesheet" href="./css/style.css">
 	<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-  <link href="./img/app.svg" rel="icon" type="image/x-ico">
+	<link href="./img/app.svg" rel="icon" type="image/x-ico">
 </head>
 
 <body class="d-flex flex-column">
@@ -137,99 +137,18 @@
 						<div class="card-body">
 							<div class="tab-content" id="myTabContent">
 								<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-									<div class="form-group" v-if="testLink!='#'">
-										<span>Test link:</span>
-										<div class="input-group input-group-sm">
-											<input id="testLink" type="text" class="form-control" :value="testLink" readonly>
-											<div class="input-group-append">
-												<a class="btn btn-outline-secondary" :href="testLink" target="_blank">Go</a>
-												<button class="btn btn-outline-secondary clipboard" data-clipboard-target="#testLink"
-													type="button" title="Copy!"><i class="fa fa-copy"></i></button>
-											</div>
-										</div>
-									</div>
-									<div class="form-group" v-if="liveLink!='#'">
-										<span>Live cint link:</span>
-										<div class="input-group input-group-sm">
-											<input id="liveLink" type="text" class="form-control" readonly :value="liveLink">
-											<div class="input-group-append">
-												<a class="btn btn-outline-secondary" :href="liveLink" target="_blank">Go</a>
-												<button class="btn btn-outline-secondary clipboard" data-clipboard-target="#liveLink"
-													type="button" title="Copy!"><i class="fa fa-copy"></i></button>
-											</div>
-										</div>
-									</div>
-									<div class="form-group" v-if="wechatLink!='#'">
-										<span>WeChat link:</span>
-										<div class="input-group input-group-sm">
-											<input id="wechatLink" type="text" class="form-control" readonly :value="wechatLink">
-											<div class="input-group-append">
-												<a class="btn btn-outline-secondary" :href="wechatLink" target="_blank">Go</a>
-												<button class="btn btn-outline-secondary clipboard" data-clipboard-target="#wechatLink"
-													type="button" title="Copy!"><i class="fa fa-copy"></i></button>
-											</div>
-										</div>
-									</div>
+									<cpm-link cid="testLink" cname="Test Link" :clink="testLink"></cpm-link>
+									<cpm-link cid="liveLink" cname="Live Link" :clink="liveLink"></cpm-link>
+									<cpm-link cid="wechatLink" cname="WeChat Link" :clink="wechatLink"></cpm-link>
 									<div id="spm_link" class="collapse multi-collapse">
-										<div class="form-group" v-if="spmmbLink!='#'">
-											<span>SuperPM MB link:</span>
-											<div class="input-group input-group-sm">
-												<input id="spmmblink" type="text" class="form-control" readonly :value="spmmbLink">
-												<div class="input-group-append">
-													<a :href="spmmbLink" class="btn btn-outline-secondary" target="_blank">Go</a>
-													<button class="btn btn-outline-secondary clipboard" data-clipboard-target="#spmmblink"
-														type="button" title="Copy!"><i class="fa fa-copy"></i></button>
-												</div>
-											</div>
-										</div>
-										<div class="form-group" v-if="spmmbLink!='#'">
-											<span>SuperPM TNS link:</span>
-											<div class="input-group input-group-sm">
-												<input id="spmtnslink" type="text" class="form-control" readonly :value="spmtnsLink">
-												<div class="input-group-append">
-													<a class="btn btn-outline-secondary" :href="spmtnsLink" target="_blank">Go</a>
-													<button class="btn btn-outline-secondary clipboard" data-clipboard-target="#spmtnslink"
-														type="button" title="Copy!"><i class="fa fa-copy"></i></button>
-												</div>
-											</div>
-										</div>
+										<cpm-link cid="spmmbLink" cname="SuperPM MB link" :clink="spmmbLink"></cpm-link>
+										<cpm-link cid="spmtnsLink" cname="SuperPM TNS link" :clink="spmtnsLink"></cpm-link>
 									</div>
 								</div>
 								<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-									<div class="form-group">
-										<span>Survey summary:</span>
-										<div class="input-group input-group-sm">
-											<input id="surveySummary" type="text" class="form-control" :value="surveySummary" readonly>
-											<div class="input-group-append">
-												<a class="btn btn-outline-secondary" target="_blank" :href="surveySummary">Go</a>
-												<button class="btn btn-outline-secondary clipboard" data-clipboard-target="#surveySummary"
-													type="button" title="Copy!">
-													<i class="fa fa-copy"></i></button>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<span>Report 2010:</span>
-										<div class="input-group input-group-sm">
-											<input id="report2010" type="text" class="form-control" readonly :value="report2010">
-											<div class="input-group-append">
-												<a class="btn btn-outline-secondary" target="_blank" :href="report2010">Go</a></button>
-												<button class="btn btn-outline-secondary clipboard" data-clipboard-target="#report2010"
-													type="button" title="Copy!"><i class="fa fa-copy"></i></button>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<span>Edit data:</span>
-										<div class="input-group input-group-sm">
-											<input id="editData" type="text" class="form-control" readonly :value="editData">
-											<div class="input-group-append">
-												<a class="btn btn-outline-secondary" target="_blank" :href="editData">Go</a>
-												<button class="btn btn-outline-secondary clipboard" data-clipboard-target="#editData"
-													title="Copy!"><i class="fa fa-copy"></i></button>
-											</div>
-										</div>
-									</div>
+									<cpm-link cid="surveySummary" cname="Survey summary" :clink="surveySummary"></cpm-link>
+									<cpm-link cid="report2010" cname="Report 2010" :clink="report2010"></cpm-link>
+									<cpm-link cid="editData" cname="Edit data" :clink="editData"></cpm-link>
 								</div>
 							</div>
 						</div>
@@ -247,6 +166,22 @@
 			</div>
 		</div>
 	</footer>
+
+	<template id="cpmLink">
+		<div>
+			<div class="form-group" v-if="clink!='#'">
+				<span>{{cname}}:</span>
+				<div class="input-group input-group-sm">
+					<input :id="cid" type="text" class="form-control" :value="clink" readonly>
+					<div class="input-group-append">
+						<a class="btn btn-outline-secondary" :href="clink" target="_blank">Go</a>
+						<button class="btn btn-outline-secondary clipboard" :data-clipboard-target="'#'+cid" type="button"
+							title="Copy!"><i class="fa fa-copy"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
 
 	<!-- <script src="./js/jquery-1.11.0.min.js"></script> -->
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
