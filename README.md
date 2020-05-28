@@ -13,4 +13,6 @@ Email：wilson.wu@kantar.com
 - [ ] 根据不同的服务地址更换链接   
 例如：dev,build,apac
 - [x] 将所有的链接块组件化
+- [x] 尝试使用`webpack`打包js文件
+- [ ] 将js全面解耦，并打包
 

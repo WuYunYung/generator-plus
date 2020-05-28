@@ -6,10 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Generator | Links</title>
 	<script src="https://cdn.bootcss.com/clipboard.js/2.0.6/clipboard.min.js"></script>
-	<link rel="stylesheet" href="./css/bootstrap.min.css">
-	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./src/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./src/css/style.css">
 	<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-	<link href="./img/app.svg" rel="icon" type="image/x-ico">
+	<link href="./src/img/app.svg" rel="icon" type="image/x-ico">
 </head>
 
 <body class="d-flex flex-column">
@@ -23,7 +23,7 @@
 				<div class="collapse navbar-collapse">
 					<div class="navbar-nav mr-auto">
 						<a class="nav-item nav-link active" href="#">Links</a>
-						<a class="nav-item nav-link disabled" href="./command.html">Commands</a>
+						<a class="nav-item nav-link disabled" href="./src/command.html">Commands</a>
 					</div>
 				</div>
 			</div>
@@ -35,10 +35,7 @@
 				<div class="col col-xl-4 col-lg-4 col-md-5" style="margin-top: 2em;height: fit-content;">
 					<div class="card shadow">
 						<div class="card-body">
-							<h5 class="card-title">Survey Info:
-								<span class="badge float-right badge-secondary" data-toggle="tooltip" data-placement="bottom"
-									data-html="true" title="修复了survey path在Other useful links中的问题，更新了survey path的设定,更新了脚本加载顺序"
-									v-if="sn.length!==6">new</span></h5>
+							<h5 class="card-title">Survey Info:</h5>
 							<hr />
 							<div class="form-group">
 								<label>SN:</label>
@@ -185,7 +182,7 @@
 
 	<!-- <script src="./js/jquery-1.11.0.min.js"></script> -->
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<script src="./js/index.js"></script>
+	<script src="./dist/main.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 		crossorigin="anonymous"></script>
@@ -202,7 +199,7 @@
 			$('[data-toggle="popover"]').popover()
 		});
 	</script>
-	<script type="text/javascript" src="./js/bootstrap3-typeahead.min.js"></script>
+	<script type="text/javascript" src="./src/js/bootstrap3-typeahead.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
 		crossorigin="anonymous"></script>
