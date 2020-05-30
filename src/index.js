@@ -1,4 +1,4 @@
-import {languageCode,countryCode} from "./data.js";
+import {languageCode,countryCode} from "./js/data.js";
 
 const cpmLink = {
   template:'#cpmLink',
@@ -178,3 +178,6 @@ const app = new Vue({
     cpmLink
   }
 });
+
+require('./css/style.css')
+require('./css/bootstrap.min.css')
