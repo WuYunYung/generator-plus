@@ -15,4 +15,7 @@ Email：wilson.wu@kantar.com
 - [x] 将所有的链接块组件化
 - [x] 尝试使用`webpack`打包js文件
 - [ ] 将js全面解耦，并打包
+- [x] 将css打包
+- [x] 配置npm初始化
+- [x] git排除了不必要的文件追踪
 
