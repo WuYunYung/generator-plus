@@ -1,5 +1,9 @@
 {
   "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
     "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
