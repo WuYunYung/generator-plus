@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import {languageCode,countryCode} from "./js/data.js";
 
 const cpmLink = {
@@ -166,7 +167,7 @@ const app = new Vue({
   },
   watch: {
     sn(val) {
-      str = val.replace(/[^\d]/g, "");
+      let str = val.replace(/[^\d]/g, "");
       if (str.length <= 6) {
         this.sn = str;
       } else {
