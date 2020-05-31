@@ -18,4 +18,5 @@ Email：wilson.wu@kantar.com
 - [x] 将css打包
 - [x] 配置npm初始化
 - [x] git排除了不必要的文件追踪
+- [x] 编译成es2015,提高兼容性
 
