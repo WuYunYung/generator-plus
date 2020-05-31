@@ -9,14 +9,15 @@ Autho：Wilson Wu
 Email：wilson.wu@kantar.com   
 ```
 
-## 更新功能
+## Development log
 - [ ] 根据不同的服务地址更换链接   
 例如：dev,build,apac
 - [x] 将所有的链接块组件化
 - [x] 尝试使用`webpack`打包js文件
-- [ ] 将js全面解耦，并打包
+- [ ] 将js全面解耦，并打包 !important
 - [x] 将css打包
 - [x] 配置npm初始化
 - [x] git排除了不必要的文件追踪
 - [x] 编译成es2015,提高兼容性
+- [x] 尝试使用vue文件解耦一个组件
 
