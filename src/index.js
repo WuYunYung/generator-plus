@@ -1,16 +1,8 @@
 import Vue from 'vue'
 import {languageCode,countryCode} from "./js/data.js";
+import cpmLink from './vue/cpmLink.vue'
 
-const cpmLink = {
-  template:'#cpmLink',
-  props:{
-    cid:String,
-    cname:String,
-    clink:String,
-  }
-}
-
-const app = new Vue({
+new Vue({
   el: "#app",
   data: {
     sn: "", //sn number

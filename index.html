@@ -162,22 +162,6 @@
 		</div>
 	</footer>
 
-	<template id="cpmLink">
-		<div>
-			<div class="form-group" v-if="clink!='#'">
-				<span>{{cname}}:</span>
-				<div class="input-group input-group-sm">
-					<input :id="cid" type="text" class="form-control" :value="clink" readonly>
-					<div class="input-group-append">
-						<a class="btn btn-outline-secondary" :href="clink" target="_blank">Go</a>
-						<button class="btn btn-outline-secondary clipboard" :data-clipboard-target="'#'+cid" type="button"
-							title="Copy!"><i class="fa fa-copy"></i></button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</template>
-
 	<script src="./dist/main.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
