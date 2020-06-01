@@ -1,6 +1,6 @@
 <template>
-	<header>
-		<nav class="navbar navbar-expand navbar-dark bg-dark shadow-sm">
+	<div>
+		<div class="navbar navbar-expand navbar-dark bg-dark shadow-sm">
 			<div class="container">
 				<div class="navbar-brand shadow-sm">
 					<!-- <span>Generator</span> -->
@@ -13,8 +13,8 @@
 					</div>
 				</div>
 			</div>
-		</nav>
-	</header>
+		</div>
+	</div>
 </template>
 
 <script>

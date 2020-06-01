@@ -1,6 +1,6 @@
 <template>
-
-  <main role="main">
+  <div>
+    <app-navbar/>
     <div class="container">
       <div class="row">
         <div class="col col-xl-4 col-lg-4 col-md-5" style="margin-top: 2em;height: fit-content;">
@@ -162,12 +162,12 @@
                   role="tabpanel"
                   aria-labelledby="home-tab"
                 >
-                  <cpm-link cid="testLink" cname="Test Link" :clink="testLink"></cpm-link>
-                  <cpm-link cid="liveLink" cname="Live Link" :clink="liveLink"></cpm-link>
-                  <cpm-link cid="wechatLink" cname="WeChat Link" :clink="wechatLink"></cpm-link>
+                  <app-link cid="testLink" cname="Test Link" :clink="testLink"></app-link>
+                  <app-link cid="liveLink" cname="Live Link" :clink="liveLink"></app-link>
+                  <app-link cid="wechatLink" cname="WeChat Link" :clink="wechatLink"></app-link>
                   <div id="spm_link" class="collapse multi-collapse">
-                    <cpm-link cid="spmmbLink" cname="SuperPM MB link" :clink="spmmbLink"></cpm-link>
-                    <cpm-link cid="spmtnsLink" cname="SuperPM TNS link" :clink="spmtnsLink"></cpm-link>
+                    <app-link cid="spmmbLink" cname="SuperPM MB link" :clink="spmmbLink"></app-link>
+                    <app-link cid="spmtnsLink" cname="SuperPM TNS link" :clink="spmtnsLink"></app-link>
                   </div>
                 </div>
                 <div
@@ -176,9 +176,9 @@
                   role="tabpanel"
                   aria-labelledby="profile-tab"
                 >
-                  <cpm-link cid="surveySummary" cname="Survey summary" :clink="surveySummary"></cpm-link>
-                  <cpm-link cid="report2010" cname="Report 2010" :clink="report2010"></cpm-link>
-                  <cpm-link cid="editData" cname="Edit data" :clink="editData"></cpm-link>
+                  <app-link cid="surveySummary" cname="Survey summary" :clink="surveySummary"></app-link>
+                  <app-link cid="report2010" cname="Report 2010" :clink="report2010"></app-link>
+                  <app-link cid="editData" cname="Edit data" :clink="editData"></app-link>
                 </div>
               </div>
             </div>
@@ -186,12 +186,13 @@
         </div>
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <script>
 import { languageCode, countryCode } from "../js/data.js";
-import cpmLink from "./cpmLink.vue";
+import appNavbar from "./appNavbar.vue";
+import appLink from "./appLink.vue";
 export default {
   data() {
     return {
@@ -347,7 +348,8 @@ export default {
     }
   },
   components: {
-    cpmLink
+    appLink,
+    appNavbar
   }
 };
 </script>

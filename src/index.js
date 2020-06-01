@@ -1,21 +1,11 @@
 import Vue from 'vue'
-import cpmNavbar from './vue/cpmNavbar.vue'
-import cpmMain from './vue/cpmMain.vue'
-import cpmFooter from './vue/cpmFooter.vue'
+import app from './vue/app.vue'
 
 new Vue({
   el:'#app',
-  template:`
-    <div class="d-flex flex-column body">
-      <cpmNavbar/>
-      <cpmMain/>
-      <cpmFooter/>
-    </div>
-  `,
+  template:'<app/>',
   components:{
-    cpmNavbar,
-    cpmMain,
-    cpmFooter
+    app
   }
 });
 
