@@ -2,7 +2,7 @@ html {
     height: 100%;
 }
 
-body {
+body,.body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -11,7 +11,3 @@ body {
 main {
     flex: 1;
 }
-
-/* .col{
-    transition: all 0.5s linear;
-} */
