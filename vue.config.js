@@ -1,3 +1,1 @@
-module.exports = {
-  outputDir: 'docs'
-}
+module.exports = {}
