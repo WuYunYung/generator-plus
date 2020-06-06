@@ -1,6 +1,5 @@
 <template>
   <div>
-    <navbar/>
     <div class="container">
       <div class="row">
         <div class="col col-xl-4 col-lg-4 col-md-5" style="margin-top: 2em;height: fit-content;">
@@ -191,7 +190,6 @@
 
 <script>
 import { languageCode, countryCode } from "../js/data.js";
-import navbar from "./navbar.vue";
 import linkItem from "./linkItem.vue";
 export default {
   data() {
@@ -348,8 +346,7 @@ export default {
     }
   },
   components: {
-    linkItem,
-    navbar
+    linkItem
   }
 };
 </script>

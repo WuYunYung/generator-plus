@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <main-panel/>
+    <navbar/>
   </div>
 </template>
 
 <script>
-import mainPanel from "./components/mainPanel.vue";
+import navbar from "./components/navbar.vue"
 
 export default {
   name: 'App',
   components: {
-    mainPanel
+    navbar
   }
 }
 </script>
