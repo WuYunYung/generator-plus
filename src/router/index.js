@@ -11,10 +11,14 @@ const routes=[
   },
   {
     path:'/',
-    component:mainPanel
+    redirect:'/links',
   }
 ]
 
-const router = new VueRouter({routes})
+const router = new VueRouter({
+  routes,
+  mode:'history',
+  linkActiveClass:'active'
+})
 
 export default router

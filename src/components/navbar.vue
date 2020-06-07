@@ -13,7 +13,9 @@
         </div>
         <div class="collapse navbar-collapse">
           <div class="navbar-nav mr-auto">
-              <router-link to="/links" class="nav-item nav-link active">Links</router-link>
+              <router-link to="/links" class="nav-item nav-link active"
+              replace
+              >Links</router-link>
             <span class="nav-item nav-link disabled">
               Commands
             </span>
