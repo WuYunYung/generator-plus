@@ -20,6 +20,7 @@ Email：wilson.wu@kantar.com
 - [x] 强行使用vue文件解耦了项目
 - [x] 使vue-cli来构建项目
 - [x] 使用vue-router设定组件路由
+- [x] 修复`live link`的bug
 - [ ] `Commands`组件开发
 - [ ] 解耦appMain组件
 - [ ] 根据不同的服务地址更换链接   

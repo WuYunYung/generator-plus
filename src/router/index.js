@@ -6,13 +6,13 @@ Vue.use(VueRouter)
 
 const routes=[
   {
-    path:'/links',
+    path:'',
     component:mainPanel
   },
   {
-    path:'/',
-    redirect:'/links',
-  }
+    path:'/links',
+    component:mainPanel
+  },
 ]
 
 const router = new VueRouter({

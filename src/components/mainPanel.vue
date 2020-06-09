@@ -253,7 +253,7 @@ export default {
         return (
           this.mainLink +
           this.spComputed +
-          this.spComputed +
+          this.snComputed +
           "?panels=LFP&list=80001&ID=[ID]" +
           this.ccComputed +
           this.lcComputed
