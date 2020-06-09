@@ -6,6 +6,10 @@ Vue.use(VueRouter)
 
 const routes=[
   {
+    path:'/generator-plus',
+    component:mainPanel
+  },
+  {
     path:'',
     component:mainPanel
   },
