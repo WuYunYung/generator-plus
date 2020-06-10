@@ -7,7 +7,7 @@
             <div class="card-body">
               <h5 class="card-title">Survey Info:</h5>
               <hr />
-              <sn-input/>
+              <sn-input :sn="sn" @sn-text-input="getSnText"/>
               <div class="form-group">
                 <label>SN:</label>
                 <div class="input-group input-group-sm">
@@ -206,6 +206,11 @@ export default {
       lang: languageCode, //list of language code
       countryCode: countryCode //list of country code
     };
+  },
+  methods:{
+    getSnText(item){
+      console.log(item)
+    }
   },
   computed: {
     snComputed() {
