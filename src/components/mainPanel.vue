@@ -7,6 +7,7 @@
             <div class="card-body">
               <h5 class="card-title">Survey Info:</h5>
               <hr />
+              <sn-input/>
               <div class="form-group">
                 <label>SN:</label>
                 <div class="input-group input-group-sm">
@@ -191,6 +192,7 @@
 <script>
 import { languageCode, countryCode } from "../js/data.js";
 import linkItem from "./linkItem.vue";
+import snInput from "./snInput";
 export default {
   data() {
     return {
@@ -346,7 +348,8 @@ export default {
     }
   },
   components: {
-    linkItem
+    linkItem,
+    snInput
   }
 };
 </script>

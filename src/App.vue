@@ -24,6 +24,7 @@ body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
+    background-image: linear-gradient(#ffffff 90%,#cccccc 0);
 }
 #app{
   flex:1;
