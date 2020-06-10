@@ -10,6 +10,13 @@ Email：wilson.wu@kantar.com
 ```
 
 ## Development log
+### Plan To-do
+- [ ] `Commands`组件开发
+- [ ] 解耦mainPanel组件
+- [ ] 根据不同的服务地址更换链接   
+### 2020/06/11
+- [x] sn的input分离成功，还可以根据不同的服务器选择
+### Completed
 - [x] 将所有的链接块组件化
 - [x] 尝试使用`webpack`打包js文件
 - [x] 将css打包
@@ -21,8 +28,5 @@ Email：wilson.wu@kantar.com
 - [x] 使vue-cli来构建项目
 - [x] 使用vue-router设定组件路由
 - [x] 修复`live link`的bug
-- [ ] `Commands`组件开发
-- [ ] 解耦appMain组件
-- [ ] 根据不同的服务地址更换链接   
 例如：dev,build,apac
 

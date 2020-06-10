@@ -9,7 +9,8 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
-        >{{serverList[serverCheckIndex]}}</button>
+        >{{serverComputed}}</button>
+
         <div class="dropdown-menu">
           <span
             class="dropdown-item"
@@ -19,6 +20,8 @@
             @click="serverClick(index)"
           >{{item}}</span>
         </div>
+
+
       </div>
       <input
         type="text"
@@ -34,16 +37,17 @@
 
 <script>
 export default {
-  props:{
-    sn:String,
-  },
   data() {
     return {
       serverList: ["apac", "selfserve", "dev"],
       serverCheckIndex: 0,
+      sn: ""
     };
   },
   computed: {
+    serverComputed(){
+      return this.serverList[this.serverCheckIndex]
+    },
     snComputed() {
       if (this.serverCheckIndex != 2) {
         if (this.sn.length === 6) {
@@ -53,7 +57,7 @@ export default {
         }
       } else {
         if (/(\d*[a-z][A-Z]*)*/.test(this.sn)) {
-          return this.sn;
+          return "/" + this.sn;
         } else {
           return "";
         }
@@ -64,8 +68,8 @@ export default {
     serverClick(value) {
       this.serverCheckIndex = value;
     },
-    snTextInput(item){
-      this.$emit('sn-text-input',item)
+    snTextInput() {
+      this.$emit("update:main-path", this.snComputed);
     }
   },
   watch: {
