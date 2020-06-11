@@ -8,7 +8,7 @@
               <h5 class="card-title">Survey Info:</h5>
               <hr />
 
-              <sn-input :main-path.sync="mainPath"/>
+              <sn-input :route.sync="route"/>
 
               <div class="form-group">
                 <label>SN:</label>
@@ -199,7 +199,7 @@ export default {
   data() {
     return {
       sn: "", //sn number
-      mainPath:"",
+      route:"",
       sp: "", //survey path
       cc: 0, //country code,default is 0
       lc: 0, //language code,default is 0

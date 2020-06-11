@@ -15,19 +15,17 @@
           <span
             class="dropdown-item"
             v-for="(item,index) of serverList"
-            :key="item"
+            :key="item.name"
             :value="index"
             @click="serverClick(index)"
-          >{{item}}</span>
+          >{{item.name}}</span>
         </div>
-
-
       </div>
       <input
         type="text"
         class="form-control"
         v-model="sn"
-        :class="{'is-valid':snComputed}"
+        :class="{'is-valid':snComputed&&serverCheckIndex!=2}"
         @input="snTextInput"
         placeholder="Please type in your SN number:"
       />
@@ -39,44 +37,81 @@
 export default {
   data() {
     return {
-      serverList: ["apac", "selfserve", "dev"],
+      // serverList: ["apac", "selfserve", "dev"],
+      serverList: [
+        {
+          name: "apac",
+          domain: "https://surveys.globaltestmarket.com",
+          route: "/apac"
+        },
+        {
+          name: "selfserver",
+          domain: "https://surveys.globaltestmarket.com",
+          route: "/selfserve/1ab8"
+        },
+        {
+          name: "dev",
+          domain: "https://gmidev.decipherinc.com",
+          route: "/apac/sha"
+        }
+      ],
       serverCheckIndex: 0,
       sn: ""
     };
   },
   computed: {
-    serverComputed(){
-      return this.serverList[this.serverCheckIndex]
+    serverComputed() {
+      return this.serverList[this.serverCheckIndex].name;
     },
     snComputed() {
-      if (this.serverCheckIndex != 2) {
+      if (this.serverCheckIndex != "2") {
         if (this.sn.length === 6) {
           return "/C" + this.sn;
         } else {
           return "";
         }
       } else {
-        if (/(\d*[a-z][A-Z]*)*/.test(this.sn)) {
-          return "/" + this.sn;
-        } else {
-          return "";
-        }
+        return "/" + this.sn;
       }
+    },
+    routeComputed() {
+      return {
+        sn: this.sn,
+        surveyLink:
+          this.serverList[this.serverCheckIndex].domain +
+          "/survey" +
+          this.serverList[this.serverCheckIndex].route +
+          this.snComputed,
+        repLink:
+          this.serverList[this.serverCheckIndex].domain +
+          "/rep" +
+          this.serverList[this.serverCheckIndex].route +
+          this.snComputed,
+        reportLink:
+          this.serverList[this.serverCheckIndex].domain +
+          "/report" +
+          this.serverList[this.serverCheckIndex].route +
+          this.snComputed
+      };
     }
   },
   methods: {
     serverClick(value) {
       this.serverCheckIndex = value;
+      this.sn = "";
+      this.snTextInput;
     },
     snTextInput() {
-      this.$emit("update:main-path", this.snComputed);
+      this.$emit("update:route", this.routeComputed);
     }
   },
   watch: {
     sn(val) {
       let str = val.replace(/[^\d]/g, "");
       if (this.serverCheckIndex != 2) {
-        if (str.length > 6) {
+        if (str.length <= 6) {
+          this.sn = str;
+        } else {
           this.sn = str.substr(0, 6);
         }
       }
