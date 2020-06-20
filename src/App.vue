@@ -1,32 +1,34 @@
 <template>
   <div id="app">
-    <navbar/>
+    <navbar />
+    <g-footer />
   </div>
 </template>
 
 <script>
-import navbar from "./components/navbar.vue"
+import navbar from "./components/navbar.vue";
+import gFooter from "./components/gFooter.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    navbar
+    navbar,
+    gFooter
   }
-}
+};
 </script>
 
 <style>
-html {
-    height: 100%;
-}
-
-body {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-    background-image: linear-gradient(#ffffff 90%,#cccccc 0);
+body,html{
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #F8F9F9 ;
 }
 #app{
-  flex:1;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>

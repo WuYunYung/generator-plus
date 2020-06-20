@@ -14,6 +14,10 @@ Email：wilson.wu@kantar.com
 - [ ] `Commands`组件开发
 - [ ] 解耦mainPanel组件
 - [ ] 根据不同的服务地址更换链接   
+- [ ] snInput下拉特效
+### 2020/06/21
+- [x] snInput成功与主面板结合成功
+- [x] 页头页脚改为原生样式和特效
 ### 2020/06/11
 - [x] sn的input分离成功，还可以根据不同的服务器选择
 ### Completed

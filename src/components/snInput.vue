@@ -18,7 +18,7 @@
             :key="item.name"
             :value="index"
             @click="serverClick(index)"
-          >{{item.name}}</span>
+          >{{item.name.toUpperCase()}}</span>
         </div>
       </div>
       <input
@@ -26,7 +26,6 @@
         class="form-control"
         v-model="sn"
         :class="{'is-valid':snComputed&&serverCheckIndex!=2}"
-        @input="snTextInput"
         placeholder="Please type in your SN number:"
       />
     </div>
@@ -53,6 +52,11 @@ export default {
           name: "dev",
           domain: "https://gmidev.decipherinc.com",
           route: "/apac/sha"
+        },
+        {
+          name: "ru",
+          domain: "https://gmiru.decipherinc.com",
+          route: "/apac"
         }
       ],
       serverCheckIndex: 0,
@@ -61,7 +65,7 @@ export default {
   },
   computed: {
     serverComputed() {
-      return this.serverList[this.serverCheckIndex].name;
+      return this.serverList[this.serverCheckIndex].name.toUpperCase();
     },
     snComputed() {
       if (this.serverCheckIndex != "2") {
@@ -101,8 +105,8 @@ export default {
       this.sn = "";
       this.snTextInput;
     },
-    snTextInput() {
-      this.$emit("update:route", this.routeComputed);
+    snTextInput(val) {
+      this.$emit("update:route", val);
     }
   },
   watch: {
@@ -114,6 +118,12 @@ export default {
         } else {
           this.sn = str.substr(0, 6);
         }
+      }
+      if (this.sn.length === 6) {
+        this.snTextInput(this.routeComputed);
+      }
+      else{
+        this.snTextInput('');
       }
     }
   }
