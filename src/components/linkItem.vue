@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="form-group" v-if="clink!='#'">
+    <div class="form-group animated fadeIn" v-if="clink!='#'">
       <span>{{cname}}:</span>
       <div class="input-group input-group-sm">
         <input :id="cid" type="text" class="form-control" :value="clink" readonly />

@@ -2,14 +2,17 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col col-xl-4 col-lg-4 col-md-5" style="margin-top: 2em;height: fit-content;">
-          <div class="card shadow-sm">
+        <div
+          class="col col-xl-4 col-lg-4 col-md-5"
+          style="margin-top: 1.5rem;height: fit-content;overflow:hidden"
+        >
+          <div class="card shadow-sm animated slideInLeft" style="overflow:hidden">
             <div class="card-body">
               <h5 class="card-title">Survey Info:</h5>
               <hr />
 
               <sn-input :route.sync="route" />
-              <div class="form-group" v-if="route">
+              <div class="form-group animated slideInLeft" v-if="route">
                 <label>Survey Path:</label>
                 <div class="input-group input-group-sm">
                   <div class="input-group-prepend">
@@ -27,7 +30,7 @@
                   <input type="checkbox" class="custom-control-input" id="customSwitch1" />
                 </div>
               </div>
-              <div class="form-group" v-if="route">
+              <div class="form-group animated slideInLeft" v-if="route">
                 <label>Primary Code:</label>
                 <div class="input-group input-group-sm" style="font-family: Consolas;">
                   <select class="form-control form-control-sm" v-model="cc">
@@ -49,7 +52,7 @@
                 </div>
               </div>
               <button
-                class="btn btn-light badge badge-light"
+                class="btn btn-light badge badge-light animated slideInLeft"
                 type="button"
                 data-toggle="collapse"
                 data-target=".multi-collapse"
@@ -57,7 +60,7 @@
                 aria-controls="spm_info spm_link"
                 v-if="route"
               >Super PM</button>
-              <div id="spm_info" class="collapse multi-collapse">
+              <div id="spm_info" class="collapse multi-collapse animated slideInLeft">
                 <hr />
                 <div class="form-group">
                   <label>Project Token:</label>
@@ -73,7 +76,7 @@
                   </div>
                 </div>
               </div>
-              <div v-if="sn.length<6">
+              <div v-if="!route" class="animated fadeIn">
                 <hr />
                 <h5 class="card-title">Guide:</h5>
                 <p class="card-text">
@@ -99,81 +102,74 @@
             </div>
           </div>
         </div>
-        <transition
-          name="custom-classes-transition"
-          enter-active-class="animated fadeIn"
-          leave-active-class="animated fadeOut"
-        >
-          <div
-            class="col col-12 float-right animated fadeInRight"
-            style="margin-top: 2em;"
-            v-if="route"
-            :class="{'col-xl-8 col-lg-8 col-md-7':route}"
+        <div
+          class="col col-12 float-right col-xl-8 col-lg-8 col-md-7"
+          style="margin-top: 1.5rem;"
+          v-if="route"
           >
-            <div class="card shadow-sm">
-              <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                  <li class="nav-item">
-                    <a
-                      class="nav-link active text-secondary"
-                      id="home-tab"
-                      data-toggle="tab"
-                      href="#home"
-                      role="tab"
-                      aria-controls="home"
-                      aria-selected="true"
-                    >
-                      Survey
-                      Links:
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a
-                      class="nav-link text-secondary"
-                      id="profile-tab"
-                      data-toggle="tab"
-                      href="#profile"
-                      role="tab"
-                      aria-controls="profile"
-                      aria-selected="false"
-                    >
-                      Other
-                      useful links:
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <div class="tab-content" id="myTabContent">
-                  <div
-                    class="tab-pane fade show active"
-                    id="home"
-                    role="tabpanel"
-                    aria-labelledby="home-tab"
+          <div class="card shadow-sm">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active text-secondary"
+                    id="home-tab"
+                    data-toggle="tab"
+                    href="#home"
+                    role="tab"
+                    aria-controls="home"
+                    aria-selected="true"
                   >
-                    <link-item cid="testLink" cname="Test Link" :clink="testLink"></link-item>
-                    <link-item cid="liveLink" cname="Live Link" :clink="liveLink"></link-item>
-                    <link-item cid="wechatLink" cname="WeChat Link" :clink="wechatLink"></link-item>
-                    <div id="spm_link" class="collapse multi-collapse">
-                      <link-item cid="spmmbLink" cname="SuperPM MB link" :clink="spmmbLink"></link-item>
-                      <link-item cid="spmtnsLink" cname="SuperPM TNS link" :clink="spmtnsLink"></link-item>
-                    </div>
-                  </div>
-                  <div
-                    class="tab-pane fade"
-                    id="profile"
-                    role="tabpanel"
-                    aria-labelledby="profile-tab"
+                    Survey
+                    Links:
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link text-secondary"
+                    id="profile-tab"
+                    data-toggle="tab"
+                    href="#profile"
+                    role="tab"
+                    aria-controls="profile"
+                    aria-selected="false"
                   >
-                    <link-item cid="surveySummary" cname="Survey summary" :clink="surveySummary"></link-item>
-                    <link-item cid="report2010" cname="Report 2010" :clink="report2010"></link-item>
-                    <link-item cid="editData" cname="Edit data" :clink="editData"></link-item>
+                    Other
+                    useful links:
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <div class="tab-content" id="myTabContent" style="overflow:hidden;">
+                <div
+                  class="tab-pane fade show active"
+                  id="home"
+                  role="tabpanel"
+                  aria-labelledby="home-tab"
+                >
+                  <link-item cid="testLink" cname="Test Link" :clink="testLink"></link-item>
+                  <link-item cid="liveLink" cname="Live Link" :clink="liveLink"></link-item>
+                  <link-item cid="wechatLink" cname="WeChat Link" :clink="wechatLink"></link-item>
+                  <div id="spm_link" class="collapse multi-collapse">
+                    <link-item cid="spmmbLink" cname="SuperPM MB link" :clink="spmmbLink"></link-item>
+                    <link-item cid="spmtnsLink" cname="SuperPM TNS link" :clink="spmtnsLink"></link-item>
                   </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="profile"
+                  role="tabpanel"
+                  aria-labelledby="profile-tab"
+                >
+                  <link-item cid="surveySummary" cname="Survey summary" :clink="surveySummary"></link-item>
+                  <link-item cid="report2010" cname="Report 2010" :clink="report2010"></link-item>
+                  <link-item cid="editData" cname="Edit data" :clink="editData"></link-item>
                 </div>
               </div>
             </div>
           </div>
-        </transition>
+        </div>
       </div>
     </div>
   </div>

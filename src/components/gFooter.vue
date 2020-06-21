@@ -1,14 +1,18 @@
 <template>
   <div class="footer mt-auto py-3">
-    <div class="container content">
+    <div class="container content text-muted">
       <div class="site">
         <div class="text-muted" style="padding-right:1rem;">Website by</div>
         <div class="name">@Internal Innovation Team</div>
       </div>
       <div class="site">
-        <div class="item">
-          <i class="fa fa-github"></i> Github
-        </div>
+        <a
+          class="item text-muted text-decoration-none"
+          href="https://github.com/Kantar-Profiles-GZ-Innovation-Team/generator-plus"
+          target="_blank"
+        >
+          <i class="fa fa-github"></i> github
+        </a>
         <div class="item">
           <i class="fa fa-bars"></i> About
         </div>
@@ -31,7 +35,7 @@ export default {};
   width: fit-content;
   position: absolute;
   content: "@Internal Innovation Team";
-  color: #000;
+  color: #6c757d;
   left: 0;
   transition: 0.5s;
 }
@@ -49,7 +53,7 @@ export default {};
 }
 .name:hover::after {
   left: 50%;
-  color: #000;
+  color: #6c757d;
 }
 .footer {
   height: 20vh;
@@ -85,7 +89,7 @@ export default {};
 }
 .item:hover::before {
   left: 0;
-  background-color: #000;
+  background-color: #6c757d;
 }
 .item::after {
   content: "➔";
@@ -96,7 +100,7 @@ export default {};
 }
 .item:hover:after {
   content: "➔";
-  color: #000;
+  color: #6c757d;
 }
 .site {
   min-width: fit-content;
