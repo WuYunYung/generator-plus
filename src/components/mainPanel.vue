@@ -4,9 +4,9 @@
       <div class="row">
         <div
           class="col col-xl-4 col-lg-4 col-md-5"
-          style="margin-top: 1.5rem;height: fit-content;overflow:hidden"
+          style="margin-top: 1.5rem;height: fit-content;"
         >
-          <div class="card shadow-sm animate__animated animate__fadeIn" style="overflow:hidden">
+          <div class="card shadow animate__animated animate__fadeIn" style="overflow:hidden">
             <div class="card-body">
               <h5 class="card-title">Survey Info:</h5>
               <hr />
@@ -107,7 +107,7 @@
           style="margin-top: 1.5rem;"
           v-if="route"
           >
-          <div class="card shadow-sm">
+          <div class="card shadow">
             <div class="card-header">
               <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
@@ -321,14 +321,6 @@ export default {
     }
   },
   watch: {
-    sn(val) {
-      let str = val.replace(/[^\d]/g, "");
-      if (str.length <= 6) {
-        this.sn = str;
-      } else {
-        this.sn = str.substr(0, 6);
-      }
-    },
     route(val) {
       if (val != "") {
         this.sn = val.sn;

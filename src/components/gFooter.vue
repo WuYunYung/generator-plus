@@ -2,10 +2,6 @@
   <div class="footer mt-auto py-3">
     <div class="container content text-muted">
       <div class="site">
-        <div class="text-muted" style="padding-right:1rem;">Website by</div>
-        <div class="name">@Internal Innovation Team</div>
-      </div>
-      <div class="site">
         <a
           class="item text-muted text-decoration-none"
           href="https://github.com/Kantar-Profiles-GZ-Innovation-Team/generator-plus"
@@ -16,6 +12,10 @@
         <div class="item">
           <i class="fa fa-bars"></i> About
         </div>
+      </div>
+      <div class="site">
+        <div class="text-muted" style="padding-right:1rem;">Website by</div>
+        <div class="name">@Internal Innovation Team</div>
       </div>
     </div>
   </div>

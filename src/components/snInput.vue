@@ -44,7 +44,7 @@ export default {
           route: "/apac"
         },
         {
-          name: "selfserver",
+          name: "build",
           domain: "https://surveys.globaltestmarket.com",
           route: "/selfserve/1ab8"
         },
@@ -119,7 +119,7 @@ export default {
           this.sn = str.substr(0, 6);
         }
       }
-      if (this.sn.length === 6) {
+      if (this.sn.length === 6 || this.serverCheckIndex === 2) {
         this.snTextInput(this.routeComputed);
       }
       else{
