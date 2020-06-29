@@ -6,13 +6,13 @@
           class="col col-xl-4 col-lg-4 col-md-5"
           style="margin-top: 1.5rem;height: fit-content;overflow:hidden"
         >
-          <div class="card shadow-sm animated slideInLeft" style="overflow:hidden">
+          <div class="card shadow-sm animate__animated animate__fadeIn" style="overflow:hidden">
             <div class="card-body">
               <h5 class="card-title">Survey Info:</h5>
               <hr />
 
               <sn-input :route.sync="route" />
-              <div class="form-group animated slideInLeft" v-if="route">
+              <div class="form-group animate__animated animate__fadeIn" v-if="route">
                 <label>Survey Path:</label>
                 <div class="input-group input-group-sm">
                   <div class="input-group-prepend">
@@ -30,7 +30,7 @@
                   <input type="checkbox" class="custom-control-input" id="customSwitch1" />
                 </div>
               </div>
-              <div class="form-group animated slideInLeft" v-if="route">
+              <div class="form-group animate__animated animate__fadeIn" v-if="route">
                 <label>Primary Code:</label>
                 <div class="input-group input-group-sm" style="font-family: Consolas;">
                   <select class="form-control form-control-sm" v-model="cc">
@@ -52,7 +52,7 @@
                 </div>
               </div>
               <button
-                class="btn btn-light badge badge-light animated slideInLeft"
+                class="btn btn-light badge badge-light animate__animated animate__fadeIn"
                 type="button"
                 data-toggle="collapse"
                 data-target=".multi-collapse"
@@ -60,7 +60,7 @@
                 aria-controls="spm_info spm_link"
                 v-if="route"
               >Super PM</button>
-              <div id="spm_info" class="collapse multi-collapse animated slideInLeft">
+              <div id="spm_info" class="collapse multi-collapse animate__animated animate__fadeIn">
                 <hr />
                 <div class="form-group">
                   <label>Project Token:</label>
