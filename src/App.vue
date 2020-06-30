@@ -1,31 +1,33 @@
 <template>
   <div id="app">
-    <navbar/>
+    <g-navbar />
+    <!-- <g-footer /> -->
   </div>
 </template>
 
 <script>
-import navbar from "./components/navbar.vue"
+import gNavbar from "./components/gNavbar.vue";
+// import gFooter from "./components/gFooter.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    navbar
+    gNavbar,
+    // gFooter
   }
-}
+};
 </script>
 
 <style>
-html {
-    height: 100%;
-}
-
-body {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
+body,html{
+  width: 100vw;
+  min-height: 100vh;
 }
 #app{
-  flex:1;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>
