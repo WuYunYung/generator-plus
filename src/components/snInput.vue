@@ -4,7 +4,8 @@
     <div class="input-group input-group-sm">
       <div class="input-group-prepend">
         <button
-          class="btn btn-outline-secondary dropdown-toggle"
+          class="btn dropdown-toggle"
+          :class="serverStatusClass"
           type="button"
           data-toggle="dropdown"
           aria-haspopup="true"
@@ -68,6 +69,12 @@ export default {
     };
   },
   computed: {
+    serverStatusClass: function() {
+      return {
+        "btn-outline-secondary": !this.snComputed,
+        "btn-secondary": !!this.snComputed
+      };
+    },
     serverComputed() {
       return this.serverList[this.serverCheckIndex].name.toUpperCase();
     },
