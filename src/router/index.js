@@ -7,10 +7,12 @@ Vue.use(VueRouter)
 const routes=[
   {
     path:'/generator-plus',
+    alias: '/links',
     component:mainPanel
   },
   {
-    path:'',
+    path:'/',
+    alias: '/links',
     component:mainPanel
   },
   {
