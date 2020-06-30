@@ -1,8 +1,9 @@
 import VueRouter from 'vue-router'
 import Vue from 'vue'
-import mainPanel from '../components/mainPanel.vue'
 
 Vue.use(VueRouter)
+
+const mainPanel= () => import('../components/mainPanel.vue')
 
 const routes=[
   {
