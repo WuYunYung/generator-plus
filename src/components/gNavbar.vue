@@ -26,13 +26,13 @@
         <div class="collapse navbar-collapse" id="mainNavbar">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-              <router-link to="/links" class="nav-link" replace>Links</router-link>
+              <router-link to="/links" class="nav-link">Links</router-link>
             </li>
             <li class="nav-item">
               <span class="nav-link disabled">Commands</span>
             </li>
             <li class="nav-item">
-              <span class="nav-link">About</span>
+              <span class="nav-link disabled">About</span>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://github.com/Kantar-Profiles-GZ-Innovation-Team/generator-plus" target="_blank">Github</a>

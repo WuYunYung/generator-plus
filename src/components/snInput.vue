@@ -63,7 +63,7 @@ export default {
           domain: "https://surveys.globaltestmarket.com",
           route: "/apac/PD"
         }
-      ],
+      ].sort(),
       serverCheckIndex: 0,
       sn: ""
     };
@@ -94,25 +94,29 @@ export default {
       }
     },
     routeComputed() {
-      return {
-        sn: this.sn,
-        server: this.serverComputed,
-        surveyLink:
-          this.serverList[this.serverCheckIndex].domain +
-          "/survey" +
-          this.serverList[this.serverCheckIndex].route +
-          this.snComputed,
-        repLink:
-          this.serverList[this.serverCheckIndex].domain +
-          "/rep" +
-          this.serverList[this.serverCheckIndex].route +
-          this.snComputed,
-        reportLink:
-          this.serverList[this.serverCheckIndex].domain +
-          "/report" +
-          this.serverList[this.serverCheckIndex].route +
-          this.snComputed
-      };
+      if (this.sn.length>=1) {
+        return {
+          sn: this.sn,
+          server: this.serverComputed,
+          surveyLink:
+            this.serverList[this.serverCheckIndex].domain +
+            "/survey" +
+            this.serverList[this.serverCheckIndex].route +
+            this.snComputed,
+          repLink:
+            this.serverList[this.serverCheckIndex].domain +
+            "/rep" +
+            this.serverList[this.serverCheckIndex].route +
+            this.snComputed,
+          reportLink:
+            this.serverList[this.serverCheckIndex].domain +
+            "/report" +
+            this.serverList[this.serverCheckIndex].route +
+            this.snComputed
+        };
+      } else {
+        return "";
+      }
     }
   },
   methods: {
@@ -128,14 +132,14 @@ export default {
   watch: {
     sn(val) {
       let str = val.replace(/[^\d]/g, "");
-      if (this.serverCheckIndex != 2) {
+      if (this.serverComputed != "DEV") {
         if (str.length <= 6) {
           this.sn = str;
         } else {
           this.sn = str.substr(0, 6);
         }
       }
-      if (this.sn.length === 6 || this.serverCheckIndex === 2) {
+      if (this.sn.length === 6 || this.serverComputed === "DEV") {
         this.snTextInput(this.routeComputed);
       } else {
         this.snTextInput("");
