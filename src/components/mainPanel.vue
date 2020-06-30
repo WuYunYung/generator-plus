@@ -16,7 +16,7 @@
                 <label>Survey Path:</label>
                 <div class="input-group input-group-sm">
                   <div class="input-group-prepend">
-                    <span class="input-group-text" v-if="route">{{preCComputed}}{{sn}}</span>
+                    <span class="input-group-text" v-if="!!sn">{{preCComputed}}{{sn}}</span>
                   </div>
                   <input
                     type="text"
@@ -141,7 +141,7 @@
               </ul>
             </div>
             <div class="card-body">
-              <div class="tab-content" id="myTabContent" style="overflow:hidden;">
+              <div class="tab-content" id="myTabContent">
                 <div
                   class="tab-pane fade show active"
                   id="home"
