@@ -36,7 +36,6 @@
 export default {
   data() {
     return {
-      // serverList: ["apac", "selfserve", "dev"],
       serverList: [
         {
           name: "apac",
@@ -57,6 +56,11 @@ export default {
           name: "ru",
           domain: "https://gmiru.decipherinc.com",
           route: "/apac"
+        },
+        {
+          name: "PD",
+          domain: "https://surveys.globaltestmarket.com",
+          route: "/apac/PD"
         }
       ],
       serverCheckIndex: 0,
@@ -70,7 +74,11 @@ export default {
     snComputed() {
       if (this.serverCheckIndex != "2") {
         if (this.sn.length === 6) {
-          return "/C" + this.sn;
+          if (this.serverComputed === "PD") {
+            return "/" + this.sn;
+          } else {
+            return "/C" + this.sn;
+          }
         } else {
           return "";
         }
@@ -81,6 +89,7 @@ export default {
     routeComputed() {
       return {
         sn: this.sn,
+        server: this.serverComputed,
         surveyLink:
           this.serverList[this.serverCheckIndex].domain +
           "/survey" +
@@ -121,9 +130,8 @@ export default {
       }
       if (this.sn.length === 6 || this.serverCheckIndex === 2) {
         this.snTextInput(this.routeComputed);
-      }
-      else{
-        this.snTextInput('');
+      } else {
+        this.snTextInput("");
       }
     }
   }

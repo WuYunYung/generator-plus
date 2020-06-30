@@ -16,7 +16,7 @@
                 <label>Survey Path:</label>
                 <div class="input-group input-group-sm">
                   <div class="input-group-prepend">
-                    <span class="input-group-text" v-if="route">C{{sn}}</span>
+                    <span class="input-group-text" v-if="route">{{preCComputed}}{{sn}}</span>
                   </div>
                   <input
                     type="text"
@@ -206,6 +206,13 @@ export default {
     }
   },
   computed: {
+    preCComputed(){
+      if (this.route.server==="DEV"||this.route.server==="PD") {
+        return ""
+      }else{
+        return "C"
+      }
+    },
     spComputed() {
       if (/temp(0\d|1[0-2])([0-2]\d|3[0-1])/.exec(this.sp)) {
         return "/" + this.sp;

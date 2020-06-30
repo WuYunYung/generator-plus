@@ -35,7 +35,7 @@
               <span class="nav-link">About</span>
             </li>
             <li class="nav-item">
-              <span class="nav-link">Github</span>
+              <a class="nav-link" href="https://github.com/Kantar-Profiles-GZ-Innovation-Team/generator-plus" target="_blank">Github</a>
             </li>
           </ul>
         </div>
