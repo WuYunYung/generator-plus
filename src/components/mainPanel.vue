@@ -251,9 +251,10 @@ export default {
       if (this.route && this.ccComputed && this.lcComputed) {
         return (
           this.route.surveyLink +
-          "?panels=LFP&list=80001&ID=[ID]" +
+          "?panels=LFP&list=80001" +
           this.ccComputed +
-          this.lcComputed
+          this.lcComputed +
+          "&ID=[id]"
         );
       } else {
         return "#";
@@ -264,10 +265,11 @@ export default {
         return (
           this.route.surveyLink +
           this.spComputed +
-          "?panels=Wechat&list=90888&ID=[ID]&sn=" +
+          "?panels=Wechat&list=90888&sn=" +
           this.sn +
           this.ccComputed +
-          this.lcComputed
+          this.lcComputed +
+          "&ID=[id]"
         );
       } else {
         return "#";
@@ -278,12 +280,13 @@ export default {
         return (
           this.route.surveyLink +
           this.spComputed +
-          "?panels=SPM&list=90997&ID=[ID]&table=" +
+          "?panels=SPM&list=90997&table=" +
           this.pt +
           this.ccComputed +
           this.lcComputed +
           "&SurveyId=" +
-          this.si
+          this.si +
+          "&ID=[id]"
         );
       } else {
         return "#";
@@ -294,12 +297,13 @@ export default {
         return (
           this.route.surveyLink +
           this.spComputed +
-          "?panels=SPM&list=90996&ID=[ID]&table=" +
+          "?panels=SPM&list=90996&table=" +
           this.pt +
           this.ccComputed +
           this.lcComputed +
           "&SurveyId=" +
-          this.si
+          this.si +
+          "&ID=[id]"
         );
       } else {
         return "#";
