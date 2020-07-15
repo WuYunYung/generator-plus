@@ -1,33 +1,26 @@
 <template>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">{{cname}}</h5>
-      <div class="btn btn-secondary">show</div>
-      <div class="btn btn-secondary">go</div>
-      <div class="btn btn-secondary">copy</div>
-    </div>
-    <div class="form-group animated fadeIn" v-if="clink!='#'">
-      <div class="input-group input-group-sm">
-        <input
-          :id="cid"
-          type="text"
-          class="form-control text-truncate"
-          :value="clink"
-          readonly
-          data-toggle="modal"
-          :data-target="'#modal'+cid"
-        />
-        <div class="input-group-append">
-          <a class="btn btn-outline-secondary" :href="clink" target="_blank"><i class="fa fa-arrow-right"> Go</i></a>
-          <button
-            class="btn btn-outline-secondary clipboard"
-            :data-clipboard-target="'#'+cid"
-            type="button"
-            title="Copy!"
-          >
-            <i class="fa fa-copy"> Copy</i>
-          </button>
-        </div>
+  <div class="form-group animated fadeIn" v-if="clink!='#'">
+    <label :for="cid">{{cname}}</label>
+    <div class="input-group input-group-sm">
+      <input
+        :id="cid"
+        type="text"
+        class="form-control text-truncate"
+        :value="clink"
+        readonly
+        data-toggle="modal"
+        :data-target="'#modal'+cid"
+      />
+      <div class="input-group-append">
+        <a class="btn btn-outline-secondary" :href="clink" target="_blank">Go</a>
+        <button
+          class="btn btn-outline-secondary clipboard"
+          :data-clipboard-target="'#'+cid"
+          type="button"
+          title="Copy!"
+        >
+          <i class="fa fa-copy"></i>
+        </button>
       </div>
     </div>
 
@@ -38,7 +31,7 @@
       role="dialog"
       aria-labelledby="staticBackdropLabel"
       aria-hidden="true"
-      >
+    >
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -49,11 +42,7 @@
           </div>
           <div class="modal-body user-select-all">{{clink}}</div>
           <div class="modal-footer">
-            <a
-              class="btn btn-outline-secondary"
-              :href="clink"
-              target="_blank"
-            >Go</a>
+            <a class="btn btn-outline-secondary" :href="clink" target="_blank">Go</a>
             <button
               class="btn btn-outline-secondary clipboard"
               :data-clipboard-target="'#'+cid"
@@ -72,16 +61,16 @@
 </template>
 
 <style scoped>
-.input-group{
+.input-group {
   display: flex;
   flex-direction: row;
   justify-content: right;
 }
-.input-group-prepend{
-  flex:1;
-  text-align:left;
+.input-group-prepend {
+  flex: 1;
+  text-align: left;
 }
-.input-group-prepend *{
+.input-group-prepend * {
   width: 100%;
 }
 </style>

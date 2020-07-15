@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 import ClipboardJS from "clipboard";
+import $ from 'jquery'
 
 import animate from 'animate.css' 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'font-awesome/css/font-awesome.css'
+import 'bootstrap'
 
 Vue.use(animate)
 
@@ -15,3 +17,10 @@ new Vue({
 }).$mount('#app')
 
 new ClipboardJS('.btn');
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
+$(function () {
+  $('[data-toggle="popover"]').popover();
+});
