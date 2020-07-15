@@ -254,7 +254,7 @@ export default {
           "?panels=LFP&list=80001" +
           this.ccComputed +
           this.lcComputed +
-          "&ID=[id]"
+          "&ID=[ID]"
         );
       } else {
         return "#";
@@ -269,7 +269,7 @@ export default {
           this.sn +
           this.ccComputed +
           this.lcComputed +
-          "&ID=[id]"
+          "&ID=[ID]"
         );
       } else {
         return "#";
@@ -286,7 +286,7 @@ export default {
           this.lcComputed +
           "&SurveyId=" +
           this.si +
-          "&ID=[id]"
+          "&ID=[ID]"
         );
       } else {
         return "#";
@@ -303,7 +303,7 @@ export default {
           this.lcComputed +
           "&SurveyId=" +
           this.si +
-          "&ID=[id]"
+          "&ID=[ID]"
         );
       } else {
         return "#";

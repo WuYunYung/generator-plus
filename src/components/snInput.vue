@@ -1,6 +1,17 @@
 <template>
   <div class="form-group">
-    <label>SN:</label>
+    <div class="banner">
+      <label>SN:</label>
+      <div class="link">
+        <a
+          :href="checkerLink"
+          class="badge badge-warning animate__animated animate__fadeIn float-right"
+          v-if="!!checkerLink"
+          title="Checker"
+          target="_blank"
+        >Checker</a>
+      </div>
+    </div>
     <div class="input-group input-group-sm">
       <div class="input-group-prepend">
         <button
@@ -10,6 +21,7 @@
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
+          title="Server"
         >{{serverComputed}}</button>
 
         <div class="dropdown-menu">
@@ -32,6 +44,21 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+.banner {
+  display: flex;
+  align-content: space-between;
+}
+.banner label {
+  flex: 1;
+}
+.link{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+}
+</style>
 
 <script>
 export default {
@@ -69,6 +96,20 @@ export default {
     };
   },
   computed: {
+    checkerLink: function() {
+      if (
+        (this.serverComputed === "BUILD" || this.serverComputed === "APAC") &&
+        !!this.snComputed
+      ) {
+        return (
+          "https://surveys.globaltestmarket.com/survey/lib/local/surveychecker/v2349?checkPath=" +
+          this.serverComputed.toLowerCase() +
+          this.snComputed
+        );
+      } else {
+        return "";
+      }
+    },
     serverStatusClass: function() {
       return {
         "btn-outline-secondary": !this.snComputed,
@@ -94,7 +135,7 @@ export default {
       }
     },
     routeComputed() {
-      if (this.sn.length>=1) {
+      if (this.sn.length >= 1) {
         return {
           sn: this.sn,
           server: this.serverComputed,
