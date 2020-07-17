@@ -121,7 +121,7 @@ export default {
     },
     snComputed() {
       if (this.serverCheckIndex != "2") {
-        if (this.sn.length === 6) {
+        if (this.sn.length === 6 || this.sn.length === 7) {
           if (this.serverComputed === "PD") {
             return "/" + this.sn;
           } else {
@@ -174,13 +174,13 @@ export default {
     sn(val) {
       let str = val.replace(/[^\d]/g, "");
       if (this.serverComputed != "DEV") {
-        if (str.length <= 6) {
+        if (str.length <= 7) {
           this.sn = str;
         } else {
-          this.sn = str.substr(0, 6);
+          this.sn = str.substr(0, 7);
         }
       }
-      if (this.sn.length === 6 || this.serverComputed === "DEV") {
+      if (this.sn.length === 6 || this.sn.length === 7 || this.serverComputed === "DEV") {
         this.snTextInput(this.routeComputed);
       } else {
         this.snTextInput("");
