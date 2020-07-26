@@ -29,7 +29,7 @@
               <router-link to="/links" class="nav-link">Links</router-link>
             </li>
             <li class="nav-item">
-              <span class="nav-link disabled">Commands</span>
+              <router-link to="/commands" class="nav-link">Commands</router-link>
             </li>
             <li class="nav-item">
               <span class="nav-link disabled">About</span>

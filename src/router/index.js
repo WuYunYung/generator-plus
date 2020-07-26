@@ -3,23 +3,28 @@ import Vue from 'vue'
 
 Vue.use(VueRouter)
 
-const mainPanel= () => import('../components/mainPanel.vue')
+const links= () => import('../components/Links/index.vue')
+const commands=()=>import('../components/Commands/index.vue')
 
 const routes=[
   {
     path:'/generator-plus',
     alias: '/links',
-    component:mainPanel
+    component:links
   },
   {
     path:'/',
     alias: '/links',
-    component:mainPanel
+    component:links
   },
   {
     path:'/links',
-    component:mainPanel
+    component:links
   },
+  {
+    path:'/commands',
+    component:commands
+  }
 ]
 
 const router = new VueRouter({

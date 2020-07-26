@@ -5,7 +5,7 @@
         <div
           class="col col-xl-4 col-lg-4 col-md-5"
           style="margin-top: 1.5rem;height: fit-content;"
-        >
+          >
           <div class="card shadow animate__animated animate__fadeIn" style="overflow:hidden">
             <div class="card-body">
               <h5 class="card-title">Survey Info:</h5>
@@ -182,7 +182,7 @@
 </style>
 
 <script>
-import { languageCode, countryCode } from "../js/data.js";
+import { languageCode, countryCode } from "../../js/data.js";
 import linkItem from "./linkItem.vue";
 import snInput from "./snInput";
 export default {
