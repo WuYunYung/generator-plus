@@ -193,8 +193,8 @@ export default {
       sp: "", //survey path
       cc: 0, //country code,default is 0
       lc: 0, //language code,default is 0
-      pt: "47177e38-057b-bf6e-a3e4d5e035eb", // token/table
-      si: "sureyid", //survey id
+      pt: "b8dc3876-0d72-434c-9ea586ef8f77", // token/table
+      si: "YYYY", //survey id
       mainLink: "https://surveys.globaltestmarket.com/survey/apac",
       lang: languageCode, //list of language code
       countryCode: countryCode //list of country code
@@ -280,13 +280,13 @@ export default {
         return (
           this.route.surveyLink +
           this.spComputed +
-          "?panels=SPM&list=90997&table=" +
-          this.pt +
+          "?list=90997" +
+          "&ID=[ID]" +
+          "&table=" + this.pt +
           this.ccComputed +
           this.lcComputed +
-          "&SurveyId=" +
-          this.si +
-          "&ID=[ID]"
+          "&panels=SPM" +
+          "&SurveyId=" + this.si
         );
       } else {
         return "#";
@@ -297,13 +297,13 @@ export default {
         return (
           this.route.surveyLink +
           this.spComputed +
-          "?panels=SPM&list=90996&table=" +
-          this.pt +
+          "?list=90996" +
+          "&ID=[ID]" +
+          "&table=" + this.pt +
           this.ccComputed +
           this.lcComputed +
-          "&SurveyId=" +
-          this.si +
-          "&ID=[ID]"
+          "&panels=SPM" +
+          "&SurveyId=" + this.si
         );
       } else {
         return "#";

@@ -102,7 +102,7 @@ export default {
         !!this.snComputed
       ) {
         return (
-          "https://surveys.globaltestmarket.com/survey/lib/local/surveychecker/v2349?checkPath=" +
+          "https://surveys.globaltestmarket.com/survey/lib/local/surveychecker/v2353?checkPath=" +
           this.serverComputed.toLowerCase() +
           this.snComputed
         );
