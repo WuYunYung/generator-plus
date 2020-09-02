@@ -251,6 +251,7 @@ export default {
       if (this.route && this.ccComputed && this.lcComputed) {
         return (
           this.route.surveyLink +
+          this.spComputed +
           "?panels=LFP&list=80001" +
           this.ccComputed +
           this.lcComputed +
