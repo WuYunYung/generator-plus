@@ -38,6 +38,7 @@
         type="text"
         class="form-control"
         v-model="sn"
+        autofocus
         :class="{'is-valid':snComputed&&serverCheckIndex!=2}"
         placeholder="Please type in your SN number:"
       />
