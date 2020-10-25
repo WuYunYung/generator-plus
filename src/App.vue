@@ -1,33 +1,54 @@
 <template>
-  <div id="app">
-    <g-navbar />
-    <!-- <g-footer /> -->
+  <div
+    id="app"
+    class="container"
+  >
+    <span class="display-4">Generator <sup>+</sup></span><small>Wilson Wu</small>
+    <hr />
+    <g-terminal @updateSerach="onSerachUpdate" />
+    <g-table
+      :projects="projects"
+      :serach="serach"
+    />
   </div>
 </template>
 
 <script>
-import gNavbar from "./components/gNavbar.vue";
-// import gFooter from "./components/gFooter.vue";
+import gTerminal from "./components/gTerminal";
+import gTable from "./components/gTable";
+
+const projectsList = localStorage.getItem("projects").split(",");
+const projects = {};
+for (const el of projectsList) {
+  projects[el] = localStorage.getItem(el);
+}
 
 export default {
   name: "App",
   components: {
-    gNavbar,
-    // gFooter
-  }
+    gTerminal,
+    gTable,
+  },
+  data() {
+    return {
+      serach: "",
+      projects,
+    };
+  },
+  methods: {
+    onSerachUpdate(value) {
+      this.serach = value;
+    },
+  },
 };
 </script>
 
 <style>
-body,html{
+body {
   width: 100vw;
-  min-height: 100vh;
-}
-#app{
-  width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 </style>

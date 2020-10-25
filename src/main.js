@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import App from './App.vue'
-import ClipboardJS from "clipboard";
-import $ from 'jquery'
-import ElementUI from 'element-ui';
+// import ClipboardJS from "clipboard";
+// import $ from 'jquery'
+// import ElementUI from 'element-ui';
 
-import animate from 'animate.css' 
-import 'element-ui/lib/theme-chalk/index.css';
+// import animate from 'animate.css' 
+// import 'element-ui/lib/theme-chalk/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'font-awesome/css/font-awesome.css'
+// import 'font-awesome/css/font-awesome.css'
 import 'bootstrap'
 
-Vue.use(animate)
-Vue.use(ElementUI);
+// Vue.use(animate)
+// Vue.use(ElementUI);
 
 Vue.config.productionTip = false
 
@@ -19,11 +19,11 @@ new Vue({
   render: h => h(App),
 }).$mount('#app')
 
-new ClipboardJS('.btn');
+// new ClipboardJS('.btn');
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip();
-});
-$(function () {
-  $('[data-toggle="popover"]').popover();
-});
+// $(function () {
+//   $('[data-toggle="tooltip"]').tooltip();
+// });
+// $(function () {
+//   $('[data-toggle="popover"]').popover();
+// });
