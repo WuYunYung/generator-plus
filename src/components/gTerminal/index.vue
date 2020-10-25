@@ -1,39 +1,33 @@
 <template>
-  <div>
-    <div
-      class="input-group"
-      id="g-terminal"
+  <div class="g-terminal">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Enjoy your work time~"
+      aria-label="Enjoy your work time~"
+      aria-describedby="button-addon2"
+      v-model="serach"
+      autofocus
+    />
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      id="serach"
+      @click="serachInput()"
     >
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Enjoy your work time~"
-        aria-label="Enjoy your work time~"
-        aria-describedby="button-addon2"
-        v-model="serach"
-      />
-      <div class="input-group-append">
-        <button
-          class="btn btn-outline-secondary"
-          type="button"
-          id="button-addon2"
-          @click="serachInput()"
-        >
-          Search
-        </button>
-        <button
-          class="btn btn-outline-success"
-          id="new-project"
-        >
-          New Project
-        </button>
-      </div>
-    </div>
+      Search
+    </button>
+    <new-project />
   </div>
 </template>
 
 <script>
+import newProject from "./newProject.vue";
+
 export default {
+  components: {
+    newProject,
+  },
   data() {
     return {
       serach: "",
@@ -48,7 +42,16 @@ export default {
 </script>
 
 <style scoped>
-.input-group {
+.g-terminal {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   margin: 20px auto;
+}
+.g-terminal > form-control {
+  flex: 1;
+}
+#serach {
+  margin: auto 10px;
 }
 </style>
