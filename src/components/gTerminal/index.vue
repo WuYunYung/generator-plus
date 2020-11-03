@@ -8,15 +8,8 @@
       aria-describedby="button-addon2"
       v-model="serach"
       autofocus
+      @input="serachInput()"
     />
-    <button
-      class="btn btn-outline-secondary"
-      type="button"
-      id="serach"
-      @click="serachInput()"
-    >
-      Search
-    </button>
     <new-project />
   </div>
 </template>
@@ -51,7 +44,7 @@ export default {
 .g-terminal > form-control {
   flex: 1;
 }
-#serach {
-  margin: auto 10px;
+input {
+  margin-right: 10px;
 }
 </style>

@@ -12,7 +12,7 @@
       </thead>
       <tbody>
         <tr
-          v-for="(item, index) in items"
+          v-for="(item, index) in results"
           :key="index"
         >
           <td scope="row">{{ item.jn }}</td>
@@ -31,6 +31,15 @@
 </template>
 
 <script>
+class Item {
+  constructor(sn, jn, name, status, date) {
+    this.sn = sn;
+    this.jn = jn;
+    this.name = name;
+    this.status = status;
+    this.date = date;
+  }
+}
 export default {
   props: {
     projects: Object,
@@ -39,22 +48,20 @@ export default {
 
   computed: {
     items() {
-      const dir = [];
-      for (const el in this.projects) {
-        if (this.serach) {
-          const reg = new RegExp(this.serach, "gi");
-          if (!(reg.test(el) || reg.test(this.projects[el]))) continue;
-        }
-        const props = this.projects[el].split("&"),
-          title = ["jn", "name", "status", "date"],
-          item = {};
-        item["sn"] = el;
-        for (let i = 0; i < props.length; i++) {
-          item[title[i]] = props[i];
-        }
-        dir.push(item);
-      }
-      return dir;
+      return Object.entries(this.projects).map((el) => {
+        return new Item(el[0], ...el[1].split("&"));
+      });
+    },
+    results() {
+      if (!this.serach) return this.items;
+      const reg = new RegExp(this.serach, "gi");
+      return this.items.filter((el) => {
+        return Object.entries(el)
+          .map((el) => {
+            return reg.test(el[1]);
+          })
+          .reduce((a, b) => a || b);
+      });
     },
   },
 };

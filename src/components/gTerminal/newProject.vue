@@ -86,10 +86,9 @@
                     id="inputGroupSelect01"
                   >
                     <option
+                      value="1"
                       selected
-                      disabled
-                    >Choose...</option>
-                    <option value="1">APAC</option>
+                    >APAC</option>
                     <option value="2">BUILD</option>
                     <option value="3">DEV</option>
                     <option value="3">RU</option>
@@ -108,10 +107,9 @@
                     id="inputGroupSelect01"
                   >
                     <option
+                      value="1"
                       selected
-                      disabled
-                    >Choose...</option>
-                    <option value="1">Draft</option>
+                    >Draft</option>
                     <option value="2">Live</option>
                     <option value="3">Close</option>
                   </select>
