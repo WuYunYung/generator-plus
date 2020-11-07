@@ -42,7 +42,7 @@ class Item {
 }
 export default {
   props: {
-    projects: Object,
+    projects: Array,
     serach: String,
   },
 

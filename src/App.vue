@@ -5,29 +5,28 @@
   >
     <span class="display-4">Generator <sup>+</sup></span><small>Wilson Wu</small>
     <hr />
-    <g-terminal @updateSerach="onSerachUpdate" />
-    <g-table
+    <g-terminal
+      @updateSerach="onSerachUpdate"
+      @save="save"
+    />
+    <!-- <g-table
       :projects="projects"
       :serach="serach"
-    />
+    /> -->
   </div>
 </template>
 
 <script>
 import gTerminal from "./components/gTerminal";
-import gTable from "./components/gTable";
+// import gTable from "./components/gTable";
 
-const projectsList = localStorage.getItem("projects").split(",");
-const projects = {};
-for (const el of projectsList) {
-  projects[el] = localStorage.getItem(el);
-}
+const projects = [];
 
 export default {
   name: "App",
   components: {
     gTerminal,
-    gTable,
+    // gTable,
   },
   data() {
     return {
@@ -38,6 +37,9 @@ export default {
   methods: {
     onSerachUpdate(value) {
       this.serach = value;
+    },
+    save(data) {
+      this.projects.push(data);
     },
   },
 };

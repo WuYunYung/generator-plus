@@ -8,9 +8,9 @@
       aria-describedby="button-addon2"
       v-model="serach"
       autofocus
-      @input="serachInput()"
+      @input="serachInput"
     />
-    <new-project />
+    <new-project @save="save" />
   </div>
 </template>
 
@@ -29,6 +29,9 @@ export default {
   methods: {
     serachInput() {
       this.$emit("updateSerach", this.serach);
+    },
+    save(data) {
+      this.$emit("save", data);
     },
   },
 };

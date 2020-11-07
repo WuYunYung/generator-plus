@@ -43,6 +43,7 @@
                     type="text"
                     class="form-control form-control"
                     id="SN"
+                    v-model.number="sn"
                     placeholder="Cint number"
                   >
                 </div>
@@ -54,9 +55,10 @@
                 >JN:</label>
                 <div class="col-sm-10">
                   <input
-                    type="email"
+                    type="text"
                     class="form-control"
                     id="JN"
+                    v-model.number="jn"
                     placeholder="JN"
                   >
                 </div>
@@ -68,9 +70,10 @@
                 >Name</label>
                 <div class="col-sm-10">
                   <input
-                    type="email"
+                    type="text"
                     class="form-control form-control"
                     id="name"
+                    v-model.trim="name"
                     placeholder="Name"
                   >
                 </div>
@@ -84,15 +87,13 @@
                   <select
                     class="custom-select"
                     id="inputGroupSelect01"
+                    v-model="serve"
                   >
-                    <option
-                      value="1"
-                      selected
-                    >APAC</option>
+                    <option value="1">APAC</option>
                     <option value="2">BUILD</option>
                     <option value="3">DEV</option>
-                    <option value="3">RU</option>
-                    <option value="3">PD</option>
+                    <option value="4">RU</option>
+                    <option value="5">PD</option>
                   </select>
                 </div>
               </div>
@@ -105,11 +106,9 @@
                   <select
                     class="custom-select"
                     id="inputGroupSelect01"
+                    v-model="status"
                   >
-                    <option
-                      value="1"
-                      selected
-                    >Draft</option>
+                    <option value="1">Draft</option>
                     <option value="2">Live</option>
                     <option value="3">Close</option>
                   </select>
@@ -126,6 +125,7 @@
             <button
               type="button"
               class="btn btn-primary"
+              @click="save"
             >Save</button>
           </div>
         </div>
@@ -135,5 +135,42 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      sn: "",
+      jn: "",
+      name: "",
+      serve: 1,
+      status: 1,
+      date: 0,
+    };
+  },
+  watch: {
+    sn(newSn) {
+      switch (this.status) {
+        case 1:
+        case 4:
+        case 5:
+          this.sn = newSn.replace(/[^0-9]/gi, "");
+          break;
+        default:
+          break;
+      }
+    },
+  },
+  methods: {
+    save() {
+      this.date = Date.now();
+      this.$emit("save", {
+        sn: this.sn,
+        jn: this.jn,
+        name: this.name,
+        serve: this.serve,
+        status: this.status,
+        date: this.date,
+      });
+    },
+  },
+};
 </script>
