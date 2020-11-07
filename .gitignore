@@ -21,3 +21,7 @@ pnpm-debug.log*
 *.sln
 *.sw?
 *.code-workspace
+
+#doc file
+/doc
+*.pptx
