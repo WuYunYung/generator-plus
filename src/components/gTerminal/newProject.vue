@@ -5,6 +5,7 @@
       id="new-project"
       data-toggle="modal"
       data-target="#new-project-modal"
+      @click="initData"
     >
       New Project
     </button>
@@ -41,11 +42,22 @@
                 <div class="col-sm-10">
                   <input
                     type="text"
+                    autocomplete="off"
                     class="form-control form-control"
+                    :class="{
+                      'is-invalid':!snIsValid&&this.serve!='3',
+                      'is-valid':snIsValid&&this.serve!='3'
+                    }"
                     id="SN"
-                    v-model.number="sn"
+                    v-model="sn"
                     placeholder="Cint number"
                   >
+                  <div
+                    class="invalid-feedback"
+                    v-if="snComment"
+                  >
+                    {{snComment}}
+                  </div>
                 </div>
               </div>
               <div class="form-group row">
@@ -56,9 +68,10 @@
                 <div class="col-sm-10">
                   <input
                     type="text"
+                    autocomplete="off"
                     class="form-control"
                     id="JN"
-                    v-model.number="jn"
+                    v-model="jn"
                     placeholder="JN"
                   >
                 </div>
@@ -71,6 +84,7 @@
                 <div class="col-sm-10">
                   <input
                     type="text"
+                    autocomplete="off"
                     class="form-control form-control"
                     id="name"
                     v-model.trim="name"
@@ -86,7 +100,6 @@
                 <div class="col-sm-10">
                   <select
                     class="custom-select"
-                    id="inputGroupSelect01"
                     v-model="serve"
                   >
                     <option value="1">APAC</option>
@@ -105,7 +118,6 @@
                 <div class="col-sm-10">
                   <select
                     class="custom-select"
-                    id="inputGroupSelect01"
                     v-model="status"
                   >
                     <option value="1">Draft</option>
@@ -125,6 +137,8 @@
             <button
               type="button"
               class="btn btn-primary"
+              :disabled="!isValid"
+              data-dismiss="modal"
               @click="save"
             >Save</button>
           </div>
@@ -136,6 +150,9 @@
 
 <script>
 export default {
+  props: {
+    snList: Array,
+  },
   data() {
     return {
       sn: "",
@@ -144,19 +161,44 @@ export default {
       serve: 1,
       status: 1,
       date: 0,
+      snComment: "",
     };
+  },
+  computed: {
+    snIsValid() {
+      if (this.serve == 3) return true;
+      const lenghtIsValid = () => {
+        if (this.sn.length < 6) {
+          this.snComment = "The Cint Number must be greater than 6 digits.";
+          return false;
+        }
+        return true;
+      };
+      const isUnique = () => {
+        for (const el of this.snList) {
+          if (el === this.sn) {
+            this.snComment = "The Cint Number must be Unique.";
+            return false;
+          }
+        }
+        return true;
+      };
+      return lenghtIsValid() && isUnique();
+    },
+    isValid() {
+      return !!this.snIsValid && !!this.name ? true : false;
+    },
   },
   watch: {
     sn(newSn) {
-      switch (this.status) {
-        case 1:
-        case 4:
-        case 5:
-          this.sn = newSn.replace(/[^0-9]/gi, "");
-          break;
-        default:
-          break;
+      if (this.serve != 3) {
+        this.sn = newSn.replace(/[^0-9]/gi, "");
+      } else {
+        this.sn = newSn;
       }
+    },
+    jn(newJn) {
+      this.jn = newJn.replace(/[^0-9]/gi, "");
     },
   },
   methods: {
@@ -170,6 +212,16 @@ export default {
         status: this.status,
         date: this.date,
       });
+      this.initData();
+    },
+    initData() {
+      this.sn = "";
+      this.jn = "";
+      this.name = "";
+      this.serve = 1;
+      this.status = 1;
+      this.date = 0;
+      this.snComment = "";
     },
   },
 };

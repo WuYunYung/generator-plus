@@ -10,7 +10,11 @@
       autofocus
       @input="serachInput"
     />
-    <new-project @save="save" />
+    <new-project
+      @save="save"
+      :key="refresh"
+      :snList="snList"
+    />
   </div>
 </template>
 
@@ -18,12 +22,21 @@
 import newProject from "./newProject.vue";
 
 export default {
+  props: {
+    projects: Array,
+  },
+  computed: {
+    snList() {
+      return this.projects.map((el) => el.sn);
+    },
+  },
   components: {
     newProject,
   },
   data() {
     return {
       serach: "",
+      refresh: true,
     };
   },
   methods: {
@@ -32,6 +45,7 @@ export default {
     },
     save(data) {
       this.$emit("save", data);
+      this.refresh = !this.refresh;
     },
   },
 };

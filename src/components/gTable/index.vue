@@ -11,57 +11,44 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="(item, index) in results"
+        <project-item
+          v-for="(item,index) in result"
           :key="index"
-        >
-          <td scope="row">{{ item.jn }}</td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.sn }}</td>
-          <td>
-            <span class="badge badge-secondary">{{ item.status }}</span>
-          </td>
-          <td>
-            <button class="btn btn-sm btn-outline-dark">Delete</button>
-          </td>
-        </tr>
+          :project="item"
+          @deleteItem="deleteItem(item.sn)"
+        />
       </tbody>
     </table>
   </div>
 </template>
 
 <script>
-class Item {
-  constructor(sn, jn, name, status, date) {
-    this.sn = sn;
-    this.jn = jn;
-    this.name = name;
-    this.status = status;
-    this.date = date;
-  }
-}
+import projectItem from "./projectItem";
+
 export default {
   props: {
     projects: Array,
     serach: String,
   },
-
   computed: {
-    items() {
-      return Object.entries(this.projects).map((el) => {
-        return new Item(el[0], ...el[1].split("&"));
-      });
-    },
-    results() {
-      if (!this.serach) return this.items;
+    result() {
+      if (!this.serach) return this.projects;
       const reg = new RegExp(this.serach, "gi");
-      return this.items.filter((el) => {
+      return this.projects.filter((el) => {
         return Object.entries(el)
           .map((el) => {
             return reg.test(el[1]);
           })
           .reduce((a, b) => a || b);
       });
+    },
+  },
+  components: {
+    projectItem,
+  },
+  methods: {
+    deleteItem(sn) {
+      this.$emit("deleteItem", sn);
     },
   },
 };
