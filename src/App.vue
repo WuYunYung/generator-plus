@@ -1,30 +1,26 @@
 <template>
-  <div
-    id="app"
-    class="container"
-  >
-    <span class="display-4">Generator <sup>+</sup></span><small>Wilson Wu</small>
-    <hr />
-    <g-terminal
-      :projects="projects"
-      @updateSerach="onSerachUpdate"
-      @save="save"
-    />
-    <g-table
-      :projects="projects"
-      :serach="serach"
-      @deleteItem="deleteItem"
-    />
+  <div id="app">
+    <navbar />
+    <div class="container">
+      <g-terminal
+        :projects="projects"
+        @updateSerach="onSerachUpdate"
+        @save="save"
+      />
+      <g-table :projects="projects" :serach="serach" @deleteItem="deleteItem" />
+    </div>
   </div>
 </template>
 
 <script>
+import navbar from "./components/navbar";
 import gTerminal from "./components/gTerminal";
 import gTable from "./components/gTable";
 
 export default {
   name: "App",
   components: {
+    navbar,
     gTerminal,
     gTable,
   },
@@ -56,11 +52,4 @@ export default {
 </script>
 
 <style>
-body {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 </style>
