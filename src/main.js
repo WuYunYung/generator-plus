@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 // import 'font-awesome/css/font-awesome.css'
 import 'bootstrap'
 
-// import router from './router'
+import router from './router'
 import store from './store'
 
 // Vue.use(animate)
@@ -20,7 +20,7 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false
 
 new Vue({
-  // router,
+  router,
   store,
   render: h => h(App)
 }).$mount('#app')

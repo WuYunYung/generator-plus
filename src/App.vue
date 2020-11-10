@@ -4,7 +4,7 @@
       <terminal />
     </el-aside>
     <el-container :span="18">
-      <!-- <router-view></router-view> -->
+      <router-view></router-view>
     </el-container>
   </el-container>
 </template>

@@ -5,6 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    projects: localStorage.getItem("projects")
+    ? JSON.parse(localStorage.getItem("projects"))
+    : [],
   },
   mutations: {
   },
