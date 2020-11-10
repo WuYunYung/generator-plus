@@ -1,55 +1,33 @@
 <template>
-  <div id="app">
-    <navbar />
-    <div class="container">
-      <g-terminal
-        :projects="projects"
-        @updateSerach="onSerachUpdate"
-        @save="save"
-      />
-      <g-table :projects="projects" :serach="serach" @deleteItem="deleteItem" />
-    </div>
-  </div>
+  <el-container id="app">
+    <el-aside :span="6">
+      <terminal />
+    </el-aside>
+    <el-container :span="18">
+      <!-- <router-view></router-view> -->
+    </el-container>
+  </el-container>
 </template>
 
+<style lang="scss" scoped>
+#app{
+  width: 100vw;
+  height: 100vh;
+  &>.el-aside{
+    background: #ffffff;
+  }
+  &>.el-container{
+    background:#f3f2f1;
+  }
+}
+</style>
+
 <script>
-import navbar from "./components/navbar";
-import gTerminal from "./components/gTerminal";
-import gTable from "./components/gTable";
+import terminal from "./components/Terminal";
 
 export default {
-  name: "App",
   components: {
-    navbar,
-    gTerminal,
-    gTable,
-  },
-  mounted: function () {
-    this.projects = localStorage.getItem("projects")
-      ? JSON.parse(localStorage.getItem("projects"))
-      : [];
-  },
-  data() {
-    return {
-      serach: "",
-      projects: [],
-    };
-  },
-  methods: {
-    onSerachUpdate(value) {
-      this.serach = value;
-    },
-    save(data) {
-      this.projects.push(data);
-      localStorage.setItem("projects", JSON.stringify(this.projects));
-    },
-    deleteItem(sn) {
-      this.projects = this.projects.filter((el) => el.sn != sn);
-      localStorage.setItem("projects", JSON.stringify(this.projects));
-    },
+    terminal,
   },
 };
 </script>
-
-<style>
-</style>
