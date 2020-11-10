@@ -10,14 +10,14 @@
 </template>
 
 <style lang="scss" scoped>
-#app{
+#app {
   width: 100vw;
   height: 100vh;
-  &>.el-aside{
+  & > .el-aside {
     background: #ffffff;
   }
-  &>.el-container{
-    background:#f3f2f1;
+  & > .el-container {
+    background: #f3f2f1;
   }
 }
 </style>

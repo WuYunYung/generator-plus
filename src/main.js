@@ -9,7 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 // import 'font-awesome/css/font-awesome.css'
-import 'bootstrap'
+// import 'bootstrap'
 
 import router from './router'
 import store from './store'
