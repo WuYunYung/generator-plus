@@ -1,14 +1,9 @@
 <template>
   <el-container>
-    <el-header>
-      <el-page-header
-        @back="back"
-        content="New Project:"
-      >
-      </el-page-header>
-    </el-header>
     <el-container id="new">
-
+      <el-header>
+        <el-page-header @back="back" content="New Project:"></el-page-header>
+      </el-header>
       <el-form
         labelPosition="left"
         label-width="80px"
@@ -79,14 +74,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.el-header {
-  background: #fff;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  border: 1px solid #f4f4f4;
 }
 </style>
 

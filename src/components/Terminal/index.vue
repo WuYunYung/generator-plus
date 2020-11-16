@@ -33,16 +33,7 @@
             ></i>
           </el-input>
         </el-col>
-        <el-col class="new">
-          <el-button
-            type="primary"
-            size="medium"
-            icon="el-icon-plus"
-            circle
-            title="New"
-            @click="newProject"
-          />
-        </el-col>
+        <new-project/>
       </el-row>
       <el-menu>
         <el-menu-item
@@ -88,7 +79,11 @@
 </style>
 
 <script>
+import newProject from "./new"
 export default {
+  components:{
+    newProject
+  },
   data() {
     return {
       serach: "",

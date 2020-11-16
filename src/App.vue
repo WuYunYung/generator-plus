@@ -27,7 +27,7 @@ import terminal from "./components/Terminal";
 
 export default {
   components: {
-    terminal,
-  },
+    terminal
+  }
 };
 </script>
