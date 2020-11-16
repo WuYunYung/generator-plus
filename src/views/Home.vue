@@ -1,16 +1,27 @@
 <template>
   <el-container class="home">
-    <h1>Hello world!</h1>
+    <el-row :span="24" class="logo">
+      <span class="display-4">
+        Generator
+        <sup class="text-warning">
+          <b>+</b>
+        </sup>
+      </span>
+    </el-row>
   </el-container>
 </template>
 
 <style lang="scss" scoped>
-.home{
+.home {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.logo{
+  opacity: 0.5;
 }
 </style>
 
@@ -19,9 +30,9 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     // HelloWorld
   }
-}
+};
 </script>

@@ -9,7 +9,12 @@
       @click="newDialog"
     />
 
-    <el-dialog title="New Project" :visible.sync="visible">
+    <el-dialog
+      title="New Project"
+      :visible.sync="visible"
+      :destroy-on-close="false"
+      :width="dialogWidth"
+    >
       <el-container span="24">
         <el-col>
           <el-row>
@@ -19,14 +24,14 @@
               <el-step title="Step 3"></el-step>
             </el-steps>
           </el-row>
-
           <hr />
           <el-row>
-            <el-form :model="project" :key="'dialog_'+key" :label-position="'left'" label-width="100px">
+            <el-form :model="project" :label-position="'right'" :label-width="formLabelWidth">
               <div class="form-item" v-if="active===1">
                 <h5>1. Please choose your server:</h5>
                 <el-form-item label="Server:">
                   <el-select v-model="project.server" placeholder="Serve">
+                    <el-option label="Server..." value="0" disabled></el-option>
                     <el-option label="APAC" value="1"></el-option>
                     <el-option label="BUILD" value="2"></el-option>
                     <el-option label="DEV" value="3"></el-option>
@@ -37,7 +42,7 @@
               </div>
               <div class="form-item" v-if="active===2">
                 <h5>2. Please enter project information：</h5>
-                <el-form-item label="SN:">
+                <el-form-item label="SN:" :required="true">
                   <el-input v-model="project.sn"></el-input>
                 </el-form-item>
                 <el-form-item label="JN:">
@@ -63,7 +68,7 @@
       </el-container>
       <div slot="footer" class="dialog-footer">
         <el-button @click="close">Close</el-button>
-        <el-button type="primary" @click="next" v-if="active<3">Next</el-button>
+        <el-button type="primary" @click="next" v-if="active<3" :disabled="disableNext">Next</el-button>
         <el-button type="primary" @click="close" v-if="active===3">Save</el-button>
       </div>
     </el-dialog>
@@ -81,23 +86,34 @@ const item = {
   sn: "",
   jn: "",
   name: "",
-  server: "1",
+  server: "0",
   status: "1",
   date: 0,
   snComment: ""
 };
 export default {
+  computed:{
+    
+  },
   data() {
     return {
       visible: false,
-      key: 0,
       active: 1,
-      project: { ...item }
+      project: { ...item },
+      formLabelWidth: "80px",
+      dialogWidth: "540px"
+    };
+  },
+  mounted() {
+    // Element UI Dialog 自適應
+    window.onresize = () => {
+      return (() => {
+        this.setDialogWidth();
+      })();
     };
   },
   methods: {
     newDialog() {
-      this.key++;
       this.visible = true;
       this.active = 1;
       this.project = { ...item };
@@ -107,7 +123,16 @@ export default {
     },
     close() {
       this.visible = false;
+    },
+    setDialogWidth() {
+      let windowSize = document.body.clientWidth;
+      const defaultWidth = 540; // 預設寬度
+      if (windowSize < defaultWidth) {
+        this.dialogWidth = "100%";
+      } else {
+        this.dialogWidth = defaultWidth + "px";
+      }
     }
-  }
+  },
 };
 </script>

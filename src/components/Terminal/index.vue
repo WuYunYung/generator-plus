@@ -6,17 +6,6 @@
     <el-col :span="24">
       <el-row
         :span="24"
-        class="logo"
-      >
-        <span class="navbar-brand">
-          Generator
-          <sup class="text-warning">
-            <b>+</b>
-          </sup>
-        </span>
-      </el-row>
-      <el-row
-        :span="24"
         class="banner"
         type="flex"
         justify="end"
@@ -49,7 +38,7 @@
 #terminal {
   width: 100%;
   height: 100%;
-  .el-col > .el-row {
+  &> .el-col > div {
     padding: 10px 20px;
     border-bottom: #f4f4f4 1px solid;
   }
@@ -61,7 +50,12 @@
   .new {
     margin-left: 10px;
     width: fit-content;
-    line-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    buttom{
+      display: block;
+    }
   }
 }
 

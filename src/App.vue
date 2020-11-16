@@ -1,6 +1,6 @@
 <template>
   <el-container id="app">
-    <el-aside :span="6">
+    <el-aside :span="6" class="shadow-sm">
       <terminal />
     </el-aside>
     <el-container :span="18">
