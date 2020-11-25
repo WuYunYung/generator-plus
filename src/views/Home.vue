@@ -1,38 +1,39 @@
 <template>
-  <el-container class="home">
-    <el-row :span="24" class="logo">
-      <span class="display-4">
-        Generator
-        <sup class="text-warning">
-          <b>+</b>
-        </sup>
-      </span>
-    </el-row>
-  </el-container>
+  <div id="home">
+    <el-container :span="24">
+      <el-aside :span="6" class="shadow-sm">
+        <terminal />
+      </el-aside>
+      <el-container :span="18">
+        <router-view></router-view>
+      </el-container>
+    </el-container>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-.home {
+#home {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.logo{
-  opacity: 0.5;
+  & > .el-container {
+    width: 100%;
+    height: 100%;
+    & > .el-aside {
+      background: #ffffff;
+    }
+    & > .el-container {
+      background: #f3f2f1;
+    }
+  }
 }
 </style>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+import terminal from "./Terminal";
 
 export default {
-  name: "Home",
   components: {
-    // HelloWorld
-  }
+    terminal,
+  },
 };
 </script>
