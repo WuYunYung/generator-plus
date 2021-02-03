@@ -1,33 +1,41 @@
 <template>
-  <div id="app">
-    <g-navbar />
-    <!-- <g-footer /> -->
-  </div>
+  <article id="app">
+    <router-view id="header" name="header"></router-view>
+    <router-view id="nav" name="nav"></router-view>
+    <router-view></router-view>
+  </article>
 </template>
 
-<script>
-import gNavbar from "./components/gNavbar.vue";
-// import gFooter from "./components/gFooter.vue";
-
-export default {
-  name: "App",
-  components: {
-    gNavbar,
-    // gFooter
-  }
-};
-</script>
-
-<style>
-body,html{
+<style scoped>
+#app {
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 50px 1fr;
+  grid-template-areas:
+    "header header"
+    "aside main";
 }
-#app{
-  width: 100vw;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+
+#app > #header {
+  grid-area: header;
+}
+#app > #nav {
+  grid-area: aside;
+}
+#app > main {
+  padding: 15px;
+  grid-area: main;
 }
 </style>
+
+<script>
+import router from "./router";
+export default {
+  router,
+  // mounted(){
+  //   this.$store.commit('initProjects')
+  // }
+}
+</script>
