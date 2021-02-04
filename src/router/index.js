@@ -10,15 +10,25 @@ const header = () => import("../views/header.vue")
 const nav = () => import("../views/nav.vue")
 const home = () => import('../views/home.vue')
 const detail = () => import('../views/detail.vue')
+const create = () => import('../views/create.vue')
 
 const commmon={header,nav}
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
+    alias:'/',
     components: {
       ...commmon,
       default: home
+    }
+  },
+  {
+    path: '/create',
+    alias:'/',
+    components: {
+      ...commmon,
+      default: create
     }
   },
   {

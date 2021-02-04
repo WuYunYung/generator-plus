@@ -12,11 +12,16 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 // Vue.use(animate)
 // Vue.use(ElementUI);
+import Vuex from 'vuex'
+Vue.use(Vuex)
 
 Vue.config.productionTip = false
 
+import store from './store/store'
+
 new Vue({
   render: h => h(App),
+  store
 }).$mount('#app')
 
 // new ClipboardJS('.btn');

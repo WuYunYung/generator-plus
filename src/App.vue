@@ -11,7 +11,7 @@
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 1fr 4fr;
   grid-template-rows: 50px 1fr;
   grid-template-areas:
     "header header"
@@ -25,7 +25,6 @@
   grid-area: aside;
 }
 #app > main {
-  padding: 15px;
   grid-area: main;
 }
 </style>
