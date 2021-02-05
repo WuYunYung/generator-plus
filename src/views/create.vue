@@ -36,10 +36,13 @@
               type="text"
               class="form-control"
               id="cint-number"
-              placeholder="[Cint number]"
               required
               v-model="sn"
+              :class="{ 'is-invalid': snIsInvalid }"
             />
+            <div class="invalid-feedback">
+              此项目已创建
+            </div>
           </div>
         </div>
         <div style="grid-area: jn">
@@ -51,7 +54,6 @@
               type="text"
               class="form-control"
               id="job-number"
-              placeholder="[Job number]"
               v-model="jn"
             />
           </div>
@@ -65,7 +67,6 @@
               type="text"
               class="form-control"
               id="project-name"
-              placeholder="[Project name]"
               v-model="name"
             />
           </div>
@@ -102,8 +103,9 @@
         <button class="btn btn-secondary" @click="reset">重置信息</button>
       </div>
       <div class="footer-right">
-        <button class="btn btn-primary" @click="submit"
-        :disabled="!isValid">确认信息</button>
+        <button class="btn btn-primary" @click="submit" :disabled="!isValid">
+          确认信息
+        </button>
       </div>
     </div>
   </main>
@@ -184,7 +186,7 @@
   align-items: flex-end;
 }
 
-.footer-left{
+.footer-left {
   display: flex;
   justify-content: flex-end;
 }
@@ -203,10 +205,24 @@ export default {
       server: "APAC",
     };
   },
-  computed:{
-    isValid(){
-      return(!!this.sn.length)
-    }
+  computed: {
+    isValid() {
+      return !!this.sn.length && !this.snIsInvalid;
+    },
+    snIsInvalid() {
+      return this.snList.find((i) => i === this.sn);
+    },
+    snList() {
+      return this.$store.getters.projectsCintNumberList;
+    },
+    project() {
+      return {
+        sn: this.sn,
+        jn: this.jn,
+        name: this.name,
+        server: this.server,
+      };
+    },
   },
   methods: {
     reset() {
@@ -218,10 +234,14 @@ export default {
     },
     analyze() {
       let title = this.title;
-      let jn = title.match(/\d{9}/);
+      let jn = title.match(/\d{9}/)[0];
       let name = title.replace(/\d{9}/, "");
-      let sn = name.match(/\d{7}/);
-      name = name.replace(/\d{7}/, "").replace(/_/g," ").trim();
+      let sn = name.match(/\d{7}/)[0];
+      name = name
+        .replace(/\d{7}/, "")
+        .replace(/_|-|C*#C*|SN|JN|\[.*\]/g, " ")
+        .replace(/s+/, "")
+        .trim();
       this.sn = sn;
       this.jn = jn;
       this.name = name;
@@ -229,10 +249,9 @@ export default {
     submit() {
       const route = `/${this.sn}`;
       const project = {
-        sn: this.sn,
-        jn: this.jn,
-        name: this.name,
+        ...this.project,
       };
+      console.log(project);
       store.commit("create", project);
       this.reset();
       router.push(route);

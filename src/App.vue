@@ -33,8 +33,8 @@
 import router from "./router";
 export default {
   router,
-  // mounted(){
-  //   this.$store.commit('initProjects')
-  // }
+  mounted(){
+    this.$store.commit('init')
+  }
 }
 </script>
