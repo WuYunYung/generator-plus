@@ -1,42 +1,38 @@
 <template>
-  <nav class="pt-3 bg-light sidebar">
-    <ul class="nav flex-column">
-      <li class="nav-item" v-for="item in projects" :key="item"
-       data-bs-toggle="tooltip" data-bs-placement="right" :title="`${item.jn} - ${item.name} - ${item.sn}`">
-        <router-link class="nav-link rounded" :to="`/${item.sn}`">{{item.sn}}</router-link>
-      </li>
-    </ul>
-  </nav>
+  <v-navigation-drawer app>
+    <v-list>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="title">
+            Generator<sup>+</sup>
+          </v-list-item-title>
+          <v-list-item-subtitle>Wilcome!</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+
+    <v-divider></v-divider>
+
+    <v-list nav dense>
+      <v-list-item link>
+        <v-list-item-icon>
+          <v-icon>mdi-home</v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>Home</v-list-item-title>
+      </v-list-item>
+    </v-list>
+  </v-navigation-drawer>
 </template>
 
-<style scoped>
-#nav {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: inset -1px 0 0 rgb(0 0 0 / 10%);
-}
-.features {
-  margin-bottom: 10px;
-}
-.nav {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  overflow-y: auto;
-}
-</style>
-
 <script>
-import router from "../router";
+// import router from "../router";
 
-export default {
-  router,
-  computed:{
-    projects() {
-      return this.$store.state.projects;
-    },
-  }
-};
+// export default {
+//   router,
+//   computed: {
+//     projects() {
+//       return this.$store.state.projects;
+//     },
+//   },
+// };
 </script>

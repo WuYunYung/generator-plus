@@ -2,25 +2,26 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-const st=localStorage;
+const st = localStorage;
 
 export default new Vuex.Store({
   state: {
     projects: []
   },
-  getters:{
-    projectsCintNumberList:state=>{
-      return state.projects.map(item=>item.sn)
+  getters: {
+    projectsCintNumberList: state => {
+      return state.projects.map(item => item.sn)
     }
   },
   mutations: {
-    init(state){
-      state.projects=JSON.parse(st.getItem('projects'))
+    init(state) {
+      const data=st.getItem('projects')
+      state.projects = data?JSON.parse(data):[]
     },
     create(state, project) {
       state.projects.push(project)
-      const projects=JSON.stringify(state.projects)
-      st.setItem('projects',projects)
+      const projects = JSON.stringify(state.projects)
+      st.setItem('projects', projects)
     }
   }
 })

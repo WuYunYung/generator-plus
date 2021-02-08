@@ -40,9 +40,7 @@
               v-model="sn"
               :class="{ 'is-invalid': snIsInvalid }"
             />
-            <div class="invalid-feedback">
-              此项目已创建
-            </div>
+            <div class="invalid-feedback">此项目已创建</div>
           </div>
         </div>
         <div style="grid-area: jn">
