@@ -1,7 +1,10 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn color="primary" dark v-bind="attrs" v-on="on"> New project </v-btn>
+      <v-btn v-bind="attrs" v-on="on" depressed text>
+        New
+        <v-icon right>mdi-plus-box</v-icon>
+      </v-btn>
     </template>
     <v-card>
       <v-card-title>
@@ -152,12 +155,12 @@ export default {
       console.log(project);
       this.$store.commit("create", project);
       // this.$router.push(route);
-      this.close()
+      this.close();
     },
-    close(){
+    close() {
       this.reset();
       this.dialog = false;
-    }
+    },
   },
 };
 </script>

@@ -9,7 +9,13 @@ const routes = [
   {
     path: '/projects',
     alias: '/',
-    component:projects
+    component:projects,
+    children: [
+      {
+        path: ':sn',
+        component: ()=>import('../views/projects/project')
+      }
+    ]
   },
 ]
 
