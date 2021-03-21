@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="projects">
-    <v-card width="300" class="nav-bar">
+    <v-container class="nav-bar" fluid>
       <v-toolbar flat dense>
         <v-toolbar-title>Projects:</v-toolbar-title>
         <v-spacer></v-spacer>
@@ -21,7 +21,12 @@
       <v-divider></v-divider>
       <v-list dense two-line class="project-list">
         <v-list-item-group color="primary">
-          <v-list-item v-for="(item, i) in projects" :key="i" link :to="item.to">
+          <v-list-item
+            v-for="(item, i) in projects"
+            :key="i"
+            link
+            :to="item.to"
+          >
             <v-list-item-content>
               <v-list-item-title v-html="item.title"></v-list-item-title>
               <v-list-item-subtitle
@@ -31,8 +36,8 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
-    </v-card>
-    <v-container class="project-content">
+    </v-container>
+    <v-container class="content-container" fluid>
       <router-view></router-view>
     </v-container>
   </v-container>
@@ -59,6 +64,9 @@
 
 .nav-bar {
   position: fixed;
+  max-width: 300px;
+  padding: 0;
+  border-right: 1px solid #e0e0e0;
   display: grid;
   height: calc(100% - 48px);
   grid-template-rows: auto auto 1fr;
@@ -68,8 +76,9 @@
   overflow: auto;
 }
 
-.project-content{
+.content-container {
   grid-area: content;
+  padding:0;
 }
 </style>
 
@@ -77,18 +86,17 @@
 import newProject from "./newProject";
 import store from "../../store/store";
 export default {
-  data: () => ({
-  }),
+  data: () => ({}),
   computed: {
     projects: () => {
-      const projects = store.state.projects;
+      const projects = store.state.Projects.projects;
       if (projects.lenght === 0) return [];
       const items = [];
       projects.forEach((element) => {
         items.push({
           title: `C${element.sn}`,
           subtitle: `${element.jn} - ${element.name}`,
-          to:`/projects/C${element.sn}`
+          to: `/projects/C${element.sn}`,
         });
       });
       return items;

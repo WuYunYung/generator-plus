@@ -14,7 +14,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app dense flat>
+    <v-app-bar app dense flat class="app-nav-bar">
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Generator<sup>+</sup></v-toolbar-title>
     </v-app-bar>
@@ -28,7 +28,13 @@
 
 <style>
 html{
-  overflow: auto;
+  overflow-y: auto;
+}
+</style>
+
+<style scoped>
+.app-nav-bar{
+  border-bottom: 1px solid #e0e0e0 !important;
 }
 </style>
 
@@ -45,7 +51,7 @@ export default {
     ],
   }),
   mounted: () => {
-    store.commit("init");
+    store.commit("Projects/init");
   },
 };
 </script>

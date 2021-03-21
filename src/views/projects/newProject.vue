@@ -11,20 +11,8 @@
         <span class="headline">New project</span>
       </v-card-title>
 
-      <v-card-actions>
-        <v-btn color="orange lighten-2" text> Explore </v-btn>
-
-        <v-spacer></v-spacer>
-
-        <v-btn icon @click="show = !show">
-          <v-icon>{{ show ? "mdi-chevron-up" : "mdi-chevron-down" }}</v-icon>
-        </v-btn>
-      </v-card-actions>
-
       <v-expand-transition>
         <div v-show="show">
-          <v-divider></v-divider>
-
           <v-container>
             <v-text-field
               v-model="title"
@@ -51,12 +39,13 @@
       </v-expand-transition>
       <v-divider></v-divider>
       <v-card-text>
-        <v-container>
+        <v-form>
           <v-row>
             <v-col cols="12" sm="6" md="4">
               <v-text-field
                 label="Cint number*"
                 :counter="7"
+                :rules="rules"
                 required
                 v-model="sn"
               ></v-text-field>
@@ -80,26 +69,25 @@
               <v-text-field label="Project name" v-model="name"></v-text-field>
             </v-col>
           </v-row>
-        </v-container>
+        </v-form>
         <small>*indicates required field</small>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" text @click="close">
-          Close
-        </v-btn>
-        <v-btn color="blue darken-1" text @click="submit"> Save </v-btn>
+        <v-btn color="blue darken-1" text @click="close">Close</v-btn>
+        <v-btn color="blue darken-1" text @click="submit" :disabled="!valid">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   data: () => ({
     dialog: false,
     loading: false,
-    show: false,
+    show: true,
     title: "",
     sn: "",
     jn: "",
@@ -107,15 +95,6 @@ export default {
     server: "APAC",
   }),
   computed: {
-    isValid() {
-      return !!this.sn.length && !this.snIsInvalid;
-    },
-    snIsInvalid() {
-      return this.snList.find((i) => i === this.sn);
-    },
-    snList() {
-      return this.$store.getters.projectsCintNumberList;
-    },
     project() {
       return {
         sn: this.sn,
@@ -124,6 +103,18 @@ export default {
         server: this.server,
       };
     },
+    rules() {
+      return [
+        (v) => /\d{7}/.test(v) || `SN must be 7 digits`,
+        (v) => !this.snList.includes(v) || `Project has been created!`,
+      ];
+    },
+    valid(){
+      return /\d{7}/.test(this.sn) && !this.snList.includes(this.sn)
+    },
+    ...mapGetters("Projects", {
+      snList: "projectsCintNumberList",
+    }),
   },
   methods: {
     reset() {
@@ -132,6 +123,7 @@ export default {
       this.jn = "";
       this.name = "";
       this.server = "APAC";
+      this.show = "true";
     },
     analyze() {
       let title = this.title;
@@ -146,6 +138,7 @@ export default {
       this.sn = sn;
       this.jn = jn;
       this.name = name;
+      this.show = false;
     },
     submit() {
       // const route = `/${this.sn}`;
@@ -153,7 +146,7 @@ export default {
         ...this.project,
       };
       console.log(project);
-      this.$store.commit("create", project);
+      this.create(project);
       // this.$router.push(route);
       this.close();
     },
@@ -161,6 +154,10 @@ export default {
       this.reset();
       this.dialog = false;
     },
+    ...mapActions("Projects", {
+      checkProject: "hasProject",
+      create: "create",
+    }),
   },
 };
 </script>
