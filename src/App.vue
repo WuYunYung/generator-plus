@@ -28,7 +28,7 @@
 
 <style>
 html{
-  overflow-y: auto;
+  overflow-y: auto !important;
 }
 </style>
 
@@ -46,7 +46,8 @@ export default {
   data: () => ({
     drawer: null,
     items: [
-      { title: "Projects", icon: "mdi-home", to: "/projects" },
+      { title: "Home", icon: "mdi-home", to: "/home" },
+      { title: "Projects", icon: "mdi-view-list", to: "/projects" },
       { title: "About", icon: "mdi-help-box", to: "/about" },
     ],
   }),

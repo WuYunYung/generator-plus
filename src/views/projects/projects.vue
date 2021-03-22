@@ -1,26 +1,14 @@
 <template>
   <v-container fluid class="projects">
-    <v-container class="nav-bar" fluid>
+    <div class="nav-bar">
       <v-toolbar flat dense>
         <v-toolbar-title>Projects:</v-toolbar-title>
         <v-spacer></v-spacer>
-        <new-project />
+        <create-project />
       </v-toolbar>
-      <!-- <v-list dense>
-        <v-list-item link>
-          <v-list-item-icon>
-            <v-icon>mdi-plus-box</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>
-              New project
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list> -->
       <v-divider></v-divider>
       <v-list dense two-line class="project-list">
-        <v-list-item-group color="primary">
+        <v-list-item-group>
           <v-list-item
             v-for="(item, i) in projects"
             :key="i"
@@ -36,21 +24,17 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
-    </v-container>
-    <v-container class="content-container" fluid>
-      <router-view></router-view>
-    </v-container>
+    </div>
+    <router-view class="content-container"></router-view>
   </v-container>
 </template>
 
 <style scoped>
-.not-find {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.project-list .v-list-item:hover .delete {
+  opacity: 1;
+}
+.project-list .v-list-item .delete {
+  opacity: 0;
 }
 
 .projects {
@@ -78,12 +62,12 @@
 
 .content-container {
   grid-area: content;
-  padding:0;
+  padding: 0;
 }
 </style>
 
 <script>
-import newProject from "./newProject";
+import createProject from "../../components/projects/createProject";
 import store from "../../store/store";
 export default {
   data: () => ({}),
@@ -103,7 +87,7 @@ export default {
     },
   },
   components: {
-    newProject,
+    createProject,
   },
 };
 </script>

@@ -3,21 +3,37 @@ import Vue from 'vue'
 
 Vue.use(VueRouter)
 
-const projects = ()=>import('../views/projects/projects')
+const Projects = ()=>import('../views/projects/Projects')
+const Home =()=>import('../views/Home')
+const About =()=>import('../views/About')
 
 const routes = [
   {
     path: '/projects',
-    alias: '/',
-    component:projects,
+    component:Projects,
     children: [
       {
-        path: ':sn',
-        component: ()=>import('../views/projects/project')
+        path: '/projects/:sn',
+        component: ()=>import('../views/projects/Project'),
+        children:[
+          {
+            path:'/projects/:sn/urls',
+            component:()=>import('../views/projects/SurveyURLs')
+          }
+        ]
       }
     ]
   },
+  {
+    path: '/Home',
+    alias: '/',
+    component:Home,
+  },{
+    path:'/About',
+    component:About,
+  }
 ]
+
 
 const router = new VueRouter({
   routes,

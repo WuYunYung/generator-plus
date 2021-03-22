@@ -11,12 +11,16 @@ const Projects = {
       state.projects = data ? JSON.parse(data) : [];
     },
     // C|R|U|D
-    create(state, project) {
-      state.projects.push(project);
+    saveState(state) {
       const projects = JSON.stringify(state.projects);
       ls.setItem("projects", projects);
     },
-    //C.1 :检查是否含有已有项目
+    create(state, project) {
+      state.projects.push(project);
+    },
+    delete(state, sn) {
+      state.projects=state.projects.filter((n) => n.sn !== sn)
+    },
   },
   actions: {
     hasProject({ state }, sn) {
@@ -33,10 +37,22 @@ const Projects = {
     async create({ dispatch, commit }, project) {
       await dispatch("hasProject", project.sn).then(
         () => {
-          alert("Project has been created!");
+          alert("This project has been created.");
         },
         () => {
           commit("create", project);
+          commit("saveState");
+        }
+      );
+    },
+    async delete({ dispatch, commit }, sn) {
+      await dispatch("hasProject", sn).then(
+        () => {
+          commit("delete", sn);
+          commit("saveState");
+        },
+        () => {
+          alert("This project has not been created.");
         }
       );
     },

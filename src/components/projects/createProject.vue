@@ -12,34 +12,29 @@
       </v-card-title>
 
       <v-expand-transition>
-        <div v-show="show">
-          <v-container>
-            <v-text-field
-              v-model="title"
-              clearable
-              label="Parse your Email title"
-              type="text"
-            >
-              <template v-slot:prepend>
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <v-icon v-on="on"> mdi-help-circle-outline </v-icon>
-                  </template>
-                  Past your email title and autofill this form.
-                </v-tooltip>
+        <v-card-text v-show="show">
+          <v-text-field
+            v-model="title"
+            clearable
+            label="Parse your Email title"
+            type="text"
+          >
+            <v-tooltip bottom slot="append">
+              <template v-slot:activator="{ on }">
+                <v-icon v-on="on"> mdi-help-circle-outline </v-icon>
               </template>
-              <template v-slot:append-outer>
-                <v-btn style="top: -12px" offset-y @click="analyze"
-                  >Pares</v-btn
-                >
-              </template>
-            </v-text-field>
-          </v-container>
-        </div>
+              Past your email title and autofill this form.
+            </v-tooltip>
+            <template v-slot:append-outer>
+              <v-btn offset-y @click="analyze" text small color="blue">
+                <v-icon left>mdi-pencil</v-icon>Pares
+              </v-btn>
+            </template>
+          </v-text-field>
+        </v-card-text>
       </v-expand-transition>
-      <v-divider></v-divider>
       <v-card-text>
-        <v-form>
+        <v-form ref="form">
           <v-row>
             <v-col cols="12" sm="6" md="4">
               <v-text-field
@@ -74,8 +69,10 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" text @click="close">Close</v-btn>
-        <v-btn color="blue darken-1" text @click="submit" :disabled="!valid">Save</v-btn>
+        <v-btn color="gray" text @click="close">Close</v-btn>
+        <v-btn color="green" text @click="submit" :disabled="!valid"
+          >Save</v-btn
+        >
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -109,8 +106,8 @@ export default {
         (v) => !this.snList.includes(v) || `Project has been created!`,
       ];
     },
-    valid(){
-      return /\d{7}/.test(this.sn) && !this.snList.includes(this.sn)
+    valid() {
+      return /\d{7}/.test(this.sn) && !this.snList.includes(this.sn);
     },
     ...mapGetters("Projects", {
       snList: "projectsCintNumberList",
@@ -118,6 +115,7 @@ export default {
   },
   methods: {
     reset() {
+      this.$refs.form.reset();
       this.title = "";
       this.sn = "";
       this.jn = "";
@@ -127,27 +125,29 @@ export default {
     },
     analyze() {
       let title = this.title;
-      let jn = title.match(/\d{9}/)[0];
-      let name = title.replace(/\d{9}/, "");
-      let sn = name.match(/\d{7}/)[0];
-      name = name
-        .replace(/\d{7}/, "")
-        .replace(/_|-|C*#C*|SN|JN|\[.*\]/g, " ")
-        .replace(/s+/, "")
+      let jn = title.match(/(?<!\d)\d{9}(?!\d)/)?title.match(/(?<!\d)\d{9}(?!\d)/)[0]:'';
+      let sn = title.match(/(?<!\d)\d{7}(?!\d)/)?title.match(/(?<!\d)\d{7}(?!\d)/)[0]:'';
+      let name = title
+        .replace(jn, "")
+        .replace(sn, "")
+        .replace(/\d+/, "")
+        .replace(/_|-|C*#C*|SN|JN|\[.*\]|.+:/g, " ")
+        .replace(/\s+/, " ")
         .trim();
+
       this.sn = sn;
       this.jn = jn;
       this.name = name;
       this.show = false;
     },
     submit() {
-      // const route = `/${this.sn}`;
+      const route = `/projects/${this.sn}`;
       const project = {
         ...this.project,
       };
       console.log(project);
       this.create(project);
-      // this.$router.push(route);
+      this.$router.push(route);
       this.close();
     },
     close() {
