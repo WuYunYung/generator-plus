@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="projects">
-    <div class="nav-bar">
+    <v-container class="nav-bar">
       <v-toolbar flat dense>
         <v-toolbar-title>Projects:</v-toolbar-title>
         <v-spacer></v-spacer>
@@ -24,7 +24,7 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
-    </div>
+    </v-container>
     <router-view class="content-container"></router-view>
   </v-container>
 </template>

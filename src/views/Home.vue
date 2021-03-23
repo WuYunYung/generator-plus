@@ -1,3 +1,3 @@
 <template>
-  <v-container>About</v-container>
+  <v-container>Home</v-container>
 </template>

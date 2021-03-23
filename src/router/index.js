@@ -19,6 +19,10 @@ const routes = [
           {
             path:'/projects/:sn/urls',
             component:()=>import('../views/projects/SurveyURLs')
+          },
+          {
+            path:'/projects/:sn/others',
+            component:()=>import('../views/projects/OtherURLs')
           }
         ]
       }

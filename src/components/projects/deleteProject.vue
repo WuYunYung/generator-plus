@@ -1,19 +1,23 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="290">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn text class="delete" v-bind="attrs" v-on="on" small color="error">Delete</v-btn>
+      <v-btn flat class="delete" v-bind="attrs" v-on="on" small color="error" depressed>
+        <v-icon>mdi-delete</v-icon>
+        Delete</v-btn
+      >
     </template>
     <v-card>
       <v-card-title class="headline">
         Are you sure? 🤨
       </v-card-title>
-      <v-card-text>Delete {{title}}</v-card-text>
+      <v-card-text>Delete {{ title }}</v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="gray" text @click="dialog = false">
+        <v-btn color="gray" text @click="dialog = false" small depressed>
           cancel
         </v-btn>
-        <v-btn color="error" text @click="deleteClick">
+        <v-btn color="error" flat @click="deleteClick" small depressed>
+          <v-icon>mdi-delete</v-icon>
           Delete
         </v-btn>
       </v-card-actions>
@@ -32,10 +36,10 @@ export default {
       dialog: false,
     };
   },
-  computed:{
-    sn(){
-      return this.title.replace(/C/,'')
-    }
+  computed: {
+    sn() {
+      return this.title.replace(/C/, "");
+    },
   },
   methods: {
     ...mapActions("Projects", {
@@ -44,7 +48,7 @@ export default {
     deleteClick() {
       this.dialog = false;
       this.deleteAction(this.sn);
-      this.$router.replace('/projects')
+      this.$router.replace("/projects");
     },
   },
 };
