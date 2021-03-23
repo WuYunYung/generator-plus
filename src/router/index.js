@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-const Projects = ()=>import('../views/projects/Projects')
+const Projects = ()=>import('../views/Projects')
 const Home =()=>import('../views/Home')
 const About =()=>import('../views/About')
 
@@ -15,15 +14,15 @@ const routes = [
     children: [
       {
         path: '/projects/:sn',
-        component: ()=>import('../views/projects/Project'),
+        component: ()=>import('../views/Projects/Project'),
         children:[
           {
             path:'/projects/:sn/urls',
-            component:()=>import('../views/projects/SurveyURLs')
+            component:()=>import('../views/Projects/SurveyURLs')
           },
           {
             path:'/projects/:sn/others',
-            component:()=>import('../views/projects/OtherURLs')
+            component:()=>import('../views/Projects/OtherURLs')
           }
         ]
       }
