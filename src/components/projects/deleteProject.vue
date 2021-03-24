@@ -1,7 +1,15 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="290">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn flat class="delete" v-bind="attrs" v-on="on" small color="error" depressed>
+      <v-btn
+        class="delete"
+        v-bind="attrs"
+        v-on="on"
+        small
+        color="error"
+        depressed
+        text
+      >
         <v-icon>mdi-delete</v-icon>
         Delete</v-btn
       >
@@ -11,6 +19,7 @@
         Are you sure? 🤨
       </v-card-title>
       <v-card-text>Delete {{ title }}</v-card-text>
+      <v-divider></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="gray" text @click="dialog = false" small depressed>

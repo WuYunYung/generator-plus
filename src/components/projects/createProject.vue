@@ -10,7 +10,7 @@
       <v-card-title>
         <span class="headline">New project</span>
       </v-card-title>
-
+      <v-divider></v-divider>
       <v-expand-transition>
         <v-card-text v-show="show">
           <v-text-field
@@ -83,7 +83,6 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data: () => ({
     dialog: false,
-    loading: false,
     show: true,
     title: "",
     sn: "",
@@ -155,7 +154,6 @@ export default {
       this.dialog = false;
     },
     ...mapActions("Projects", {
-      checkProject: "hasProject",
       create: "create",
     }),
   },

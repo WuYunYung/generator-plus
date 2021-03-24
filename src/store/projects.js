@@ -19,7 +19,17 @@ const Projects = {
       state.projects.push(project);
     },
     delete(state, sn) {
-      state.projects=state.projects.filter((n) => n.sn !== sn)
+      state.projects = state.projects.filter((n) => n.sn !== sn);
+    },
+    update(state, project) {
+      for (const i of state.projects) {
+        if (i.sn === project.sn) {
+          for (const j in project) {
+            if (i[j] !== project[j]) i[j] = project[j];
+          }
+          break;
+        }
+      }
     },
   },
   actions: {
@@ -49,6 +59,17 @@ const Projects = {
       await dispatch("hasProject", sn).then(
         () => {
           commit("delete", sn);
+          commit("saveState");
+        },
+        () => {
+          alert("This project has not been created.");
+        }
+      );
+    },
+    async update({ dispatch, commit }, project) {
+      await dispatch("hasProject", project.sn).then(
+        () => {
+          commit("update", project);
           commit("saveState");
         },
         () => {
