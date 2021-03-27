@@ -6,7 +6,7 @@ const Projects = {
     projects: [],
   }),
   mutations: {
-    init(state) {
+    initialize(state) {
       const data = ls.getItem("projects");
       state.projects = data ? JSON.parse(data) : [];
     },
@@ -33,7 +33,7 @@ const Projects = {
     },
   },
   actions: {
-    hasProject({ state }, sn) {
+    async hasProject({ state }, sn) {
       return new Promise((resolve, reject) => {
         for (const project of state.projects) {
           if (project.sn === sn) {
@@ -76,6 +76,9 @@ const Projects = {
           alert("This project has not been created.");
         }
       );
+    },
+    async initialize({ commit }) {
+      commit("initialize");
     },
   },
   getters: {

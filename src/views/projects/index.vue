@@ -69,8 +69,12 @@
 <script>
 import createProject from "../../components/projects/createProject";
 import store from "../../store/store";
+import { mapActions } from "vuex";
 export default {
   data: () => ({}),
+  mounted() {
+    window.addEventListener("storage", () => this.init());
+  },
   computed: {
     projects: () => {
       const projects = store.state.Projects.projects;
@@ -88,6 +92,11 @@ export default {
   },
   components: {
     createProject,
+  },
+  methods: {
+    ...mapActions("Projects", {
+      init: "initialize",
+    }),
   },
 };
 </script>

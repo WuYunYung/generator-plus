@@ -27,13 +27,13 @@
 </template>
 
 <style>
-html{
+html {
   overflow-y: auto !important;
 }
 </style>
 
 <style scoped>
-.app-nav-bar{
+.app-nav-bar {
   border-bottom: 1px solid #e0e0e0 !important;
 }
 </style>
@@ -52,7 +52,7 @@ export default {
     ],
   }),
   mounted: () => {
-    store.commit("Projects/init");
+    store.commit("Projects/initialize");
   },
 };
 </script>
