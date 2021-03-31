@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const Projects = ()=>import('../views/Projects')
+const Projects = ()=>import('../views/projects')
 const Home =()=>import('../views/Home')
 const About =()=>import('../views/About')
 
@@ -14,15 +14,15 @@ const routes = [
     children: [
       {
         path: '/projects/:sn',
-        component: ()=>import('../views/Projects/Project'),
+        component: ()=>import('../views/projects/project'),
         children:[
           {
             path:'/projects/:sn/urls',
-            component:()=>import('../views/Projects/SurveyURLs')
+            component:()=>import('../views/projects/SurveyURLs')
           },
           {
             path:'/projects/:sn/others',
-            component:()=>import('../views/Projects/OtherURLs')
+            component:()=>import('../views/projects/OtherURLs')
           }
         ]
       }
