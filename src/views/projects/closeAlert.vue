@@ -1,3 +1,6 @@
 <template>
-  <h1>Close alert</h1>
+  <v-skeleton-loader
+    v-bind="attrs"
+    type="article,list-item-two-line,list-item-two-line,list-item-two-line"
+  ></v-skeleton-loader>
 </template>

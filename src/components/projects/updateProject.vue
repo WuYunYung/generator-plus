@@ -10,7 +10,7 @@
         text
         @click="autofill"
       >
-        <v-icon>mdi-pencil</v-icon>
+        <v-icon left>mdi-pencil</v-icon>
         update
       </v-btn>
     </template>

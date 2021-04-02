@@ -10,7 +10,7 @@
         depressed
         text
       >
-        <v-icon>mdi-delete</v-icon>
+        <v-icon left>mdi-delete</v-icon>
         Delete</v-btn
       >
     </template>
