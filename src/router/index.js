@@ -24,6 +24,10 @@ const routes = [
             path: "/projects/:sn/others",
             component: () => import("../views/projects/otherURLs"),
           },
+          {
+            path: "/projects/:sn/alert",
+            component: () => import("../views/projects/closeAlert"),
+          },
         ],
       },
     ],

@@ -1,51 +1,74 @@
 <template>
-  <v-container class="content" fluid>
-    <v-toolbar flat dense class="content-nav">
+  <v-container class="project" fluid>
+    <v-toolbar flat dense class="project-nav">
       <v-toolbar-title>{{ title }}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-subheader
-        >Job number: <b>{{ `${this.project.jn}` }}</b></v-subheader
+      <v-btn
+        v-show="showChecker"
+        depressed
+        color="warning"
+        text
+        small
+        :href="checker"
+        target="_blank"
+        link
       >
-      <v-subheader
-        >Project name: <b>{{ `${this.project.name}` }}</b></v-subheader
-      >
-      <v-subheader
-        >Server: <b>{{ `${this.project.server}` }}</b></v-subheader
-      >
-      <template v-slot:extension>
-        <v-tabs align-with-title>
-          <v-tab :to="`/projects/${title}/urls`">SURVEY URLS</v-tab>
-          <v-tab :to="`/projects/${title}/others`">Other</v-tab>
-        </v-tabs>
-        <v-btn
-          v-show="showChecker"
-          depressed
-          color="warning"
-          text
-          small
-          :href="checker"
-          target="_blank"
-          link
-        >
-          <v-icon>mdi-checkbox-marked-circle-outline</v-icon>
-          Checker
-        </v-btn>
-        <updateProject :project="project" />
-        <deleteProject :title="title" />
-      </template>
+        <v-icon>mdi-checkbox-marked-circle-outline</v-icon>
+        Checker
+      </v-btn>
+      <updateProject :project="project" />
+      <deleteProject :title="title" />
     </v-toolbar>
-    <router-view></router-view>
+    <v-navigation-drawer permanent class="project-aside" right>
+      <v-list nav dense>
+        <v-list-item-group color="primary" link>
+          <v-list-item v-for="(item, i) in items" :key="i" :to="item.to">
+            <v-list-item-icon>
+              <v-icon v-text="item.icon"></v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title v-text="item.text"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+      <v-divider></v-divider>
+      <v-list dense>
+        <v-subheader>Project details:</v-subheader>
+        <v-list-item v-for="(item, index) in details" :key="index">
+          <v-list-item-content>
+            <v-list-item-title v-text="item.title"></v-list-item-title>
+            <v-list-item-subtitle v-text="item.text"></v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <router-view class="project-view"></router-view>
   </v-container>
 </template>
 
 <style scoped>
-.content {
-  height: 100%;
+.project {
   padding: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "header header"
+    "nav aside"
+    "body aside";
 }
 
-.content-nav {
+.project-nav {
   border-bottom: 1px solid #e0e0e0;
+  grid-area: header;
+}
+
+.project-aside {
+  grid-area: aside;
 }
 </style>
 
@@ -53,6 +76,7 @@
 import deleteProject from "../../components/projects/deleteProject";
 import updateProject from "../../components/projects/updateProject";
 export default {
+  data: () => ({}),
   computed: {
     title() {
       return this.$route.params.sn;
@@ -76,6 +100,32 @@ export default {
     showChecker() {
       const server = this.project.server;
       return server === "APAC";
+    },
+    details() {
+      return [
+        { title: "Job number:", text: this.project.jn },
+        { title: "Project name:", text: this.project.name },
+        { title: "Server:", text: this.project.server },
+      ];
+    },
+    items() {
+      return [
+        {
+          text: "Survey links",
+          icon: "mdi-compass",
+          to: `/projects/${this.title}/urls`,
+        },
+        {
+          text: "Other links",
+          icon: "mdi-hammer-wrench",
+          to: `/projects/${this.title}/others`,
+        },
+        {
+          text: "Close alert",
+          icon: "mdi-alert-circle",
+          to: `/projects/${this.title}/alert`,
+        },
+      ];
     },
   },
   components: {

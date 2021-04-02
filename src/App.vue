@@ -1,8 +1,14 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" app expand-on-hover>
+    <v-navigation-drawer v-model="drawer" app mini-variant>
       <v-list dense nav>
-        <v-list-item v-for="item in items" :key="item.title" link :to="item.to">
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link
+          :to="item.to"
+          color="primary"
+        >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -29,6 +35,8 @@
 <style>
 html {
   overflow-y: auto !important;
+  height: 100vh;
+  width: 100vw;
 }
 </style>
 

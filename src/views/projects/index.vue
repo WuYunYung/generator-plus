@@ -1,14 +1,13 @@
 <template>
   <v-container fluid class="projects">
-    <v-container class="nav-bar">
-      <v-toolbar flat dense>
+    <v-navigation-drawer class="nav-bar" absolute permanent left>
+      <v-toolbar flat dense class="nav-bar-header">
         <v-toolbar-title>Projects:</v-toolbar-title>
         <v-spacer></v-spacer>
         <create-project />
       </v-toolbar>
-      <v-divider></v-divider>
-      <v-list dense two-line class="project-list">
-        <v-list-item-group>
+      <v-list nav dense class="project-list">
+        <v-list-item-group color="primary">
           <v-list-item
             v-for="(item, i) in projects"
             :key="i"
@@ -24,39 +23,32 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
-    </v-container>
+    </v-navigation-drawer>
     <router-view class="content-container"></router-view>
   </v-container>
 </template>
 
 <style scoped>
-.project-list .v-list-item:hover .delete {
-  opacity: 1;
-}
-.project-list .v-list-item .delete {
-  opacity: 0;
-}
-
 .projects {
   padding: 0;
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 300px 1fr;
-  grid-template-areas: ". content";
+  grid-template-columns: 256px 1fr;
+  grid-template-areas: "nav content";
 }
 
 .nav-bar {
-  position: fixed;
-  max-width: 300px;
   padding: 0;
-  border-right: 1px solid #e0e0e0;
   display: grid;
-  height: calc(100% - 48px);
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto 1fr;
+}
+.nav-bar-header {
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .project-list {
+  height: calc(100% - 48px) !important;
   overflow: auto;
 }
 
