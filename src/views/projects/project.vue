@@ -1,9 +1,7 @@
 <template>
   <v-container class="project" fluid>
     <v-toolbar flat dense class="project-nav">
-      <v-subheader v-for="(item, index) in details" :key="index"
-        ><b>{{ item.title }}</b> : {{ item.text }}</v-subheader
-      >
+      <projectDetail :project="project" />
       <v-spacer></v-spacer>
       <v-btn color="indigo" depressed text samll>
         <v-icon left>mdi-source-branch</v-icon>
@@ -45,6 +43,7 @@
 import deleteProject from "../../components/projects/deleteProject";
 import updateProject from "../../components/projects/updateProject";
 import surveyChecker from "../../components/projects/surveyChecker";
+import projectDetail from "../../components/projects/projectDetail";
 export default {
   data: () => ({
     branch: "main",
@@ -66,14 +65,6 @@ export default {
     },
     subtitle() {
       return `Job number: ${this.project.jn}  Project name: ${this.project.name}`;
-    },
-    details() {
-      return [
-        { title: "Job number", text: this.project.jn },
-        { title: "Project name", text: this.project.name },
-        { title: "Cint number", text: this.title },
-        { title: "Server", text: this.project.server },
-      ];
     },
     items() {
       return [
@@ -99,6 +90,7 @@ export default {
     deleteProject,
     updateProject,
     surveyChecker,
+    projectDetail,
   },
 };
 </script>
