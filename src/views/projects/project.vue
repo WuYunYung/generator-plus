@@ -15,19 +15,7 @@
             {{ item.text }}
           </v-tab>
         </v-tabs>
-        <v-btn
-          v-show="showChecker"
-          depressed
-          color="warning"
-          text
-          small
-          :href="checker"
-          target="_blank"
-          link
-        >
-          <v-icon left>mdi-checkbox-marked-circle-outline</v-icon>
-          Checker
-        </v-btn>
+        <surveyChecker :project="project" />
         <updateProject :project="project" />
         <deleteProject :title="title" />
       </template>
@@ -56,6 +44,7 @@
 <script>
 import deleteProject from "../../components/projects/deleteProject";
 import updateProject from "../../components/projects/updateProject";
+import surveyChecker from "../../components/projects/surveyChecker";
 export default {
   data: () => ({
     branch: "main",
@@ -77,13 +66,6 @@ export default {
     },
     subtitle() {
       return `Job number: ${this.project.jn}  Project name: ${this.project.name}`;
-    },
-    checker() {
-      return `https://surveys.globaltestmarket.com/survey/lib/local/surveychecker/v2349?checkPath=apac/${this.title}`;
-    },
-    showChecker() {
-      const server = this.project.server;
-      return server === "APAC";
     },
     details() {
       return [
@@ -116,6 +98,7 @@ export default {
   components: {
     deleteProject,
     updateProject,
+    surveyChecker,
   },
 };
 </script>
