@@ -124,7 +124,7 @@ export default {
       this.dialog = false;
     },
     ...mapActions("Projects", {
-      update: "update",
+      update: "updateProject",
     }),
   },
 };

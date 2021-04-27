@@ -60,7 +60,7 @@ export default {
     ],
   }),
   mounted: () => {
-    store.commit("Projects/initialize");
+    store.dispatch("Projects/initialize");
   },
 };
 </script>

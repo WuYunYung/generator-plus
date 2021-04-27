@@ -25,7 +25,7 @@
         <v-btn color="gray" text @click="dialog = false" small depressed>
           cancel
         </v-btn>
-        <v-btn color="error" flat @click="deleteClick" small depressed>
+        <v-btn color="error" text @click="deleteClick" small depressed>
           <v-icon>mdi-delete</v-icon>
           Delete
         </v-btn>
@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     ...mapActions("Projects", {
-      deleteAction: "delete",
+      deleteAction: "deleteProject",
     }),
     deleteClick() {
       this.dialog = false;

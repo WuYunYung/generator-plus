@@ -97,6 +97,7 @@ export default {
         jn: this.jn,
         name: this.name,
         server: this.server,
+        branchs: [{ name: "main", branch: "" }],
       };
     },
     rules() {
@@ -124,8 +125,12 @@ export default {
     },
     analyze() {
       let title = this.title;
-      let jn = title.match(/(?<!\d)\d{9}(?!\d)/)?title.match(/(?<!\d)\d{9}(?!\d)/)[0]:'';
-      let sn = title.match(/(?<!\d)\d{7}(?!\d)/)?title.match(/(?<!\d)\d{7}(?!\d)/)[0]:'';
+      let jn = title.match(/(?<!\d)\d{9}(?!\d)/)
+        ? title.match(/(?<!\d)\d{9}(?!\d)/)[0]
+        : "";
+      let sn = title.match(/(?<!\d)\d{7}(?!\d)/)
+        ? title.match(/(?<!\d)\d{7}(?!\d)/)[0]
+        : "";
       let name = title
         .replace(jn, "")
         .replace(sn, "")
@@ -140,13 +145,13 @@ export default {
       this.show = false;
     },
     submit() {
-      const route = `/projects/${this.sn}`;
+      const route = `/projects/C${this.sn}`;
       const project = {
         ...this.project,
       };
       console.log(project);
       this.create(project);
-      this.$router.push(route);
+      this.$router.push(route).catch(() => {});
       this.close();
     },
     close() {
@@ -154,7 +159,7 @@ export default {
       this.dialog = false;
     },
     ...mapActions("Projects", {
-      create: "create",
+      create: "createProject",
     }),
   },
 };
