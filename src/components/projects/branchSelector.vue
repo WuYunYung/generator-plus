@@ -1,34 +1,4 @@
 <template>
-  <!-- <v-select
-    :items="items"
-    color="purple"
-    label="Branch"
-    clear-icon
-    chips
-    dense
-    solo
-    eager
-    small-chips
-    :height="'10px'"
-    hide-details
-    hide-selected
-    item-text="name"
-    item-value="branch"
-    prepend-inner-icon="mdi-source-branch"
-  >
-    <template v-slot:prepend-item>
-      <v-text-field
-        class="max-w-full"
-        label="New branch:"
-        append-icon="mdi-plus"
-        @click:append="itemClick(0)"
-        dense
-        solo
-        flat
-        hide-details
-      ></v-text-field>
-    </template>
-  </v-select> -->
   <v-menu
     v-model="menu"
     :close-on-content-click="false"
@@ -38,7 +8,7 @@
     <template v-slot:activator="{ on, attrs }">
       <v-btn color="indigo" dark v-bind="attrs" v-on="on" depressed text small>
         <v-icon>mdi-source-branch</v-icon>
-        Branch
+        {{ currentBranch }}
       </v-btn>
     </template>
 
@@ -49,6 +19,7 @@
             <v-text-field
               class="max-w-full"
               label="New branch:"
+              v-model="newBranchContent"
               dense
               solo
               flat
@@ -58,10 +29,10 @@
 
           <v-list-item-action>
             <v-btn
-              dark
-              :class="fav ? 'red--text' : ''"
+              :disabled="disableNewButton"
               icon
-              @click="fav = !fav"
+              @click="newBranch"
+              color="indigo"
             >
               <v-icon>mdi-plus</v-icon>
             </v-btn>
@@ -71,21 +42,15 @@
 
       <v-divider></v-divider>
 
-      <v-list>
-        <v-list-item>
-          <v-list-item-action>
-            <v-switch v-model="message" color="purple"></v-switch>
-          </v-list-item-action>
-          <v-list-item-title>Enable messages</v-list-item-title>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-action>
-            <v-switch v-model="hints" color="purple"></v-switch>
-          </v-list-item-action>
-          <v-list-item-title>Enable hints</v-list-item-title>
-        </v-list-item>
-      </v-list>
+      <v-radio-group column v-model="currentBranch" class="mx-5">
+        <v-radio
+          v-for="(item, index) in branchs"
+          :key="index"
+          :label="item.name"
+          color="indigo"
+          :value="item.name"
+        ></v-radio>
+      </v-radio-group>
 
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -107,22 +72,29 @@ export default {
     branchs: Array,
   },
   data: () => ({
-    selectIndex: 0,
     fav: true,
     menu: false,
     message: false,
     hints: true,
+    currentBranch: "main",
+    newBranchContent: "",
   }),
   computed: {
     items() {
       return [...this.branchs];
     },
-    currentBranch() {
-      return this.items[this.selectIndex].name;
+    disableNewButton() {
+      return this.newBranchContent.length === 0;
     },
   },
   methods: {
-    newBranch() {},
+    newBranch() {
+      this.branchs.push({
+        name: this.newBranchContent,
+        branch: `/${this.newBranchContent}`,
+      });
+      this.newBranchContent = "";
+    },
   },
 };
 </script>

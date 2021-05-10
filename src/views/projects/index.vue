@@ -66,6 +66,9 @@ export default {
   data: () => ({}),
   mounted() {
     window.addEventListener("storage", () => this.init());
+    if (this.projects.length >= 1) {
+      this.$router.push(this.projects[0].to);
+    }
   },
   computed: {
     projects: () => {

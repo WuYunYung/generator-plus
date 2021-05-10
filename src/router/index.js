@@ -3,29 +3,37 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
+const originalPush = VueRouter.prototype.push
+
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 const Projects = () => import("../views/projects");
 const Home = () => import("../views/Home");
 const About = () => import("../views/About");
 
 const routes = [
+  { path: '/', redirect: '/projects' },
   {
     path: "/projects",
     component: Projects,
     children: [
       {
-        path: "/projects/:sn",
+        path: ":sn",
         component: () => import("../views/projects/project"),
         children: [
+          {path:"",redirect:"urls"},
           {
-            path: "/projects/:sn/urls",
+            path: "urls",
             component: () => import("../views/projects/surveyURLs"),
           },
           {
-            path: "/projects/:sn/others",
+            path: "others",
             component: () => import("../views/projects/otherURLs"),
           },
           {
-            path: "/projects/:sn/alert",
+            path: "alert",
             component: () => import("../views/projects/closeAlert"),
           },
         ],
@@ -34,7 +42,6 @@ const routes = [
   },
   {
     path: "/Home",
-    alias: "/",
     component: Home,
   },
   {
